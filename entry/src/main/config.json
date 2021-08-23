@@ -1,0 +1,139 @@
+{
+  "app": {
+    "bundleName": "com.fprieto.wearable",
+    "vendor": "SmartWatchExample",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 5,
+      "target": 5,
+      "releaseType": "Beta2"
+    }
+  },
+  "deviceConfig": {
+    "default": {
+      "network": {
+        "cleartextTraffic": true
+      }
+    }
+  },
+  "module": {
+    "package": "com.fprieto.wearable",
+    "name": ".MyApplication",
+    "deviceType": [
+      "wearable"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "portrait",
+        "name": "com.fprieto.wearable.HiWearMainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "$string:mainability",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.MICROPHONE",
+        "reason": "Record audio sample and translate",
+        "usedScene": {
+          "ability": [
+            "com.fprieto.wearable.slice.RecordAudioAbilitySlice"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.WRITE_USER_STORAGE",
+        "reason": "Record audio sample and translate",
+        "usedScene": {
+          "ability": [
+            "com.fprieto.wearable.slice.RecordAudioAbilitySlice"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.LOCATION",
+        "reason": "get_steps.data",
+        "usedScene": {
+          "ability": [
+            "com.fprieto.wearable.slice.LocationAbilitySlice"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.LOCATION_IN_BACKGROUND",
+        "reason": "get_steps.data",
+        "usedScene": {
+          "ability": [
+            "com.fprieto.wearable.slice.LocationAbilitySlice"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.ACTIVITY_MOTION",
+        "reason": "access to sensors",
+        "usedScene": {
+          "ability": [
+            "com.fprieto.wearable.presentation.ui.slice.MainAbilitySlice"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.READ_HEALTH_DATA",
+        "reason": "access to sensors",
+        "usedScene": {
+          "ability": [
+            "com.fprieto.wearable.presentation.ui.slice.MainAbilitySlice"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.INTERNET"
+      },
+      {
+        "name": "ohos.permission.RECORD_AUDIO"
+      },
+      {
+        "name": "ohos.permission.MICROPHONE"
+      },
+      {
+        "name": "harmonyos.permission.READ_EXTERNAL_STORAGE"
+      },
+      {
+        "name": "ohos.permission.VIBRATE",
+        "reason": "scroll feedback",
+        "usedScene": {
+          "ability": [
+            "com.fprieto.wearable.presentation.ui.slice.MainAbilitySlice"
+          ],
+          "when": "inuse"
+        }
+      }
+    ]
+  }
+}

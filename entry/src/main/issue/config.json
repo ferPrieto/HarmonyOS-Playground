@@ -1,0 +1,88 @@
+{
+  "app": {
+    "bundleName": "com.fprieto.wearable",
+    "vendor": "SmartWatchExample",
+    "version": {
+      "code": 1,
+      "name": "1.0"
+    },
+    "apiVersion": {
+      "compatible": 3,
+      "target": 5,
+      "releaseType": "Beta1"
+    }
+  },
+  "deviceConfig": {},
+  "module": {
+    "package": "com.fprieto.wearable",
+    "name": ".MyApplication",
+    "deviceType": [
+      "wearable"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "entry",
+      "moduleType": "entry"
+    },
+    "abilities": [
+      {
+        "skills": [
+          {
+            "entities": [
+              "entity.system.home"
+            ],
+            "actions": [
+              "action.system.home"
+            ]
+          }
+        ],
+        "orientation": "landscape",
+        "name": "com.fprieto.wearable.MainAbility",
+        "icon": "$media:icon",
+        "description": "$string:mainability_description",
+        "label": "SmartWatchExample",
+        "type": "page",
+        "launchType": "standard"
+      }
+    ],
+    "reqPermissions": [
+      {
+        "name": "ohos.permission.MICROPHONE",
+        "reason": "Record audio sample and translate",
+        "usedScene": {
+          "ability": [
+            "com.fprieto.wearable.slice.RecordAudioAbilitySlice"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.WRITE_USER_STORAGE",
+        "reason": "Record audio sample and translate",
+        "usedScene": {
+          "ability": [
+            "com.fprieto.wearable.slice.RecordAudioAbilitySlice"
+          ],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.LOCATION",
+        "reason": "get_steps.data",
+        "usedScene": {
+          "ability": ["com.fprieto.wearable.slice.LocationAbilitySlice"],
+          "when": "inuse"
+        }
+      },
+      {
+        "name": "ohos.permission.RECORD_AUDIO"
+      },
+      {
+        "name": "ohos.permission.MICROPHONE"
+      },
+      {
+        "name": "harmonyos.permission.READ_EXTERNAL_STORAGE"
+      }
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:id="$+id:parent_wrapper"
+    ohos:alignment="center"
+    ohos:orientation="horizontal">
+
+        <Image
+            ohos:id="$+id:buttonRewind"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:image_src="$media:rewind"/>
+
+        <Image
+            ohos:id="$+id:buttonPlay"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:left_margin="20px"
+            ohos:right_margin="20px"
+            ohos:image_src="$media:play"/>
+
+        <Image
+            ohos:id="$+id:buttonPause"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:left_margin="20px"
+            ohos:right_margin="20px"
+            ohos:visibility="hide"
+            ohos:image_src="$media:pause"/>
+
+        <Image
+            ohos:id="$+id:buttonFastForward"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:image_src="$media:fastforward"/>
+
+</DirectionalLayout>

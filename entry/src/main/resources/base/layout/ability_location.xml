@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:id="$+id:scrollview"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:background_element="#ffffff"
+    ohos:layout_alignment="horizontal_center"
+    ohos:rebound_effect="true">
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:left_padding="15"
+        ohos:orientation="vertical"
+        ohos:right_padding="40"
+        ohos:top_margin="50">
+
+        <Text
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:layout_alignment="horizontal_center"
+            ohos:text="Location Update"
+            ohos:text_font="sans-serif-medium"
+            ohos:text_size="24fp"
+            ohos:top_margin="60fp"/>
+
+        <Button
+            ohos:id="$+id:button_startLocation"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:alignment="horizontal_center"
+            ohos:background_element="$graphic:button_background"
+            ohos:layout_alignment="horizontal_center"
+            ohos:padding="10fp"
+            ohos:text="Get Location"
+            ohos:text_color="#FFFFFF"
+            ohos:top_margin="30fp"/>
+
+        <Button
+            ohos:id="$+id:button_stopLocation"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:alignment="horizontal_center"
+            ohos:background_element="$graphic:button_background"
+            ohos:layout_alignment="horizontal_center"
+            ohos:padding="10fp"
+            ohos:text="Stop Location"
+            ohos:text_color="#FFFFFF"
+            ohos:top_margin="30fp"
+            />
+
+        <Button
+            ohos:id="$+id:button_reverseLocation"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:alignment="horizontal_center"
+            ohos:background_element="$graphic:button_background"
+            ohos:layout_alignment="horizontal_center"
+            ohos:padding="10fp"
+            ohos:text="Reverse Location"
+            ohos:text_color="#FFFFFF"
+            ohos:top_margin="30fp"
+            />
+
+        <Button
+            ohos:id="$+id:button_reverseAddress"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:alignment="horizontal_center"
+            ohos:background_element="$graphic:button_background"
+            ohos:layout_alignment="horizontal_center"
+            ohos:padding="10fp"
+            ohos:text="Reverse Address"
+            ohos:text_color="#FFFFFF"
+            ohos:top_margin="30fp"
+            />
+
+        <Text
+            ohos:id="$+id:text_location_log"
+            ohos:height="match_parent"
+            ohos:width="match_parent"
+            ohos:multiple_lines="true"
+            ohos:text="logs"
+            ohos:text_alignment="left"
+            ohos:text_size="20"
+            ohos:top_margin="15vp"/>
+    </DirectionalLayout>
+</ScrollView>

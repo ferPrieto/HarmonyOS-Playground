@@ -23,21 +23,14 @@
             ohos:text_color="#FFFFFF"
             ohos:top_margin="16fp"/>
 
-        <Image
-            ohos:id="$+id:image_received_image"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:layout_alignment="horizontal_center"
-            ohos:top_margin="16fp"/>
-
         <Button
-            ohos:id="$+id:button_send_message"
+            ohos:id="$+id:button_messaging"
             ohos:height="match_content"
             ohos:width="match_content"
             ohos:background_element="$graphic:button_background"
             ohos:layout_alignment="horizontal_center"
             ohos:padding="10fp"
-            ohos:text="Send Generic Message"
+            ohos:text="Messaging"
             ohos:text_color="#FFFFFF"
             ohos:top_margin="16fp"/>
 

@@ -12,156 +12,16 @@
         ohos:width="match_parent"
         ohos:orientation="vertical">
 
-        <Text
+        <Button
+            ohos:id="$+id:button_health"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:alignment="horizontal_center"
+            ohos:background_element="$graphic:button_background"
             ohos:layout_alignment="horizontal_center"
-            ohos:text="Health Summary"
-            ohos:text_font="sans-serif-medium"
-            ohos:text_size="24fp"
-            ohos:top_margin="60fp"/>
-
-        <DirectionalLayout
-            ohos:height="match_content"
-            ohos:width="match_parent"
-            ohos:alignment="horizontal_center"
-            ohos:layout_alignment="horizontal_center"
-            ohos:orientation="horizontal"
-            ohos:top_margin="60fp">
-
-            <Image
-                ohos:id="$+id:imageCalories"
-                ohos:height="match_content"
-                ohos:width="match_content"
-                ohos:image_src="$media:fire"/>
-
-            <Text
-                ohos:id="$+id:text_calories_value"
-                ohos:height="match_content"
-                ohos:width="match_content"
-                ohos:alignment="horizontal_center"
-                ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:text_size="18fp"
-                ohos:visibility="hide"/>
-
-            <RoundProgressBar
-                ohos:id="$+id:round_progress_bar_calories"
-                ohos:height="48fp"
-                ohos:width="48fp"
-                ohos:alignment="horizontal_center"
-                ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:progress="0"
-                ohos:progress_width="10vp"/>
-
-        </DirectionalLayout>
-
-        <DirectionalLayout
-            ohos:height="match_content"
-            ohos:width="match_parent"
-            ohos:alignment="horizontal_center"
-            ohos:layout_alignment="horizontal_center"
-            ohos:orientation="horizontal"
-            ohos:top_margin="20fp">
-
-            <Image
-                ohos:id="$+id:imageHeartRate"
-                ohos:height="match_content"
-                ohos:width="match_content"
-                ohos:image_src="$media:heartRate"/>
-
-            <Text
-                ohos:id="$+id:text_heart_rate_value"
-                ohos:height="match_content"
-                ohos:width="match_content"
-                ohos:alignment="horizontal_center"
-                ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:text_size="18fp"
-                ohos:visibility="hide"/>
-
-            <RoundProgressBar
-                ohos:id="$+id:round_progress_bar_heart_rate"
-                ohos:height="48fp"
-                ohos:width="48fp"
-                ohos:alignment="horizontal_center"
-                ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:progress="0"
-                ohos:progress_width="10vp"/>
-        </DirectionalLayout>
-
-        <DirectionalLayout
-            ohos:height="match_content"
-            ohos:width="match_parent"
-            ohos:alignment="horizontal_center"
-            ohos:layout_alignment="horizontal_center"
-            ohos:orientation="horizontal"
-            ohos:top_margin="20fp">
-
-            <Image
-                ohos:id="$+id:imageSteps"
-                ohos:height="match_content"
-                ohos:width="match_content"
-                ohos:image_src="$media:steps"/>
-
-            <Text
-                ohos:id="$+id:text_steps_value"
-                ohos:height="match_content"
-                ohos:width="match_content"
-                ohos:alignment="horizontal_center"
-                ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:text_size="18fp"
-                ohos:visibility="hide"/>
-
-            <RoundProgressBar
-                ohos:id="$+id:round_progress_bar_steps"
-                ohos:height="48fp"
-                ohos:width="48fp"
-                ohos:alignment="horizontal_center"
-                ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:progress="0"
-                ohos:progress_width="10vp"/>
-        </DirectionalLayout>
-
-        <DirectionalLayout
-            ohos:height="match_content"
-            ohos:width="match_parent"
-            ohos:alignment="horizontal_center"
-            ohos:layout_alignment="horizontal_center"
-            ohos:orientation="horizontal"
-            ohos:top_margin="20fp">
-
-            <Image
-                ohos:id="$+id:imageOxygen"
-                ohos:height="match_content"
-                ohos:width="match_content"
-                ohos:image_src="$media:oxygen"/>
-
-            <Text
-                ohos:id="$+id:text_oxygen_value"
-                ohos:height="match_content"
-                ohos:width="match_content"
-                ohos:alignment="horizontal_center"
-                ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:text_size="18fp"
-                ohos:visibility="hide"/>
-
-            <RoundProgressBar
-                ohos:id="$+id:round_progress_bar_oxygen"
-                ohos:height="48fp"
-                ohos:width="48fp"
-                ohos:alignment="horizontal_center"
-                ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:progress="0"
-                ohos:progress_width="10vp"/>
-        </DirectionalLayout>
+            ohos:padding="10fp"
+            ohos:text="Health"
+            ohos:text_color="#FFFFFF"
+            ohos:top_margin="16fp"/>
 
         <Image
             ohos:id="$+id:image_received_image"

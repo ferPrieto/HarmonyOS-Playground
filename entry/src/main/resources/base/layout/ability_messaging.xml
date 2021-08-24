@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:id="$+id:scrollview_main"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:bottom_padding="16vp"
+    ohos:focusable="focus_enable">
+
+    <DirectionalLayout
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:orientation="vertical">
+
+        <Image
+            ohos:id="$+id:image_received_image"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:layout_alignment="horizontal_center"
+            ohos:top_margin="16fp"/>
+
+        <Text
+            ohos:id="$+id:text_last_received_message"
+            ohos:height="match_content"
+            ohos:width="200fp"
+            ohos:auto_scrolling_count="unlimited"
+            ohos:hint="Last message received"
+            ohos:layout_alignment="horizontal_center"
+            ohos:text_alignment="center"
+            ohos:text_size="18fp"
+            ohos:top_margin="8fp"
+            ohos:truncation_mode="auto_scrolling"/>
+
+        <Button
+            ohos:id="$+id:button_send_message"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:background_element="$graphic:button_background"
+            ohos:layout_alignment="horizontal_center"
+            ohos:padding="10fp"
+            ohos:text="Send Generic Message"
+            ohos:text_color="#FFFFFF"
+            ohos:top_margin="16fp"/>
+    </DirectionalLayout>
+</ScrollView>

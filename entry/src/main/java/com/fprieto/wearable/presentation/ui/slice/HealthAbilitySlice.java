@@ -177,8 +177,6 @@ public class HealthAbilitySlice extends AbilitySlice {
         oxygenValue = (Text) findComponentById(ResourceTable.Id_text_oxygen_value);
         scrollView = (ScrollView) findComponentById(ResourceTable.Id_scrollview_main);
 
-        lastReceivedImage = (Image) findComponentById(ResourceTable.Id_image_received_image);
-
         scrollView.setReboundEffect(true);
         scrollView.setVibrationEffectEnabled(true);
         scrollView.setTouchFocusable(true);

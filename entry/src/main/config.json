@@ -25,6 +25,14 @@
     "deviceType": [
       "wearable"
     ],
+    "metaData": {
+      "customizeData": [
+        {
+          "name": "hwc-theme",
+          "value": "androidhwext:style/Theme.Emui.Dark.NoActionBar"
+        }
+      ]
+    },
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",

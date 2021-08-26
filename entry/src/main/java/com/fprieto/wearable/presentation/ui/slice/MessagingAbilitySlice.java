@@ -1,11 +1,7 @@
 package com.fprieto.wearable.presentation.ui.slice;
 
 import com.fprieto.wearable.ResourceTable;
-import com.fprieto.wearable.model.DataMessage;
-import com.fprieto.wearable.model.PlayerCommand;
-import com.fprieto.wearable.presentation.ui.slice.joke.JokeAbilitySlice;
 import com.fprieto.wearable.util.LogUtils;
-import com.google.gson.Gson;
 import com.huawei.watch.kit.hiwear.HiWear;
 import com.huawei.watch.kit.hiwear.p2p.HiWearMessage;
 import com.huawei.watch.kit.hiwear.p2p.P2pClient;
@@ -14,11 +10,9 @@ import com.huawei.watch.kit.hiwear.p2p.SendCallback;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.*;
-import ohos.agp.components.Component.RotationEventListener;
 import ohos.app.dispatcher.TaskDispatcher;
 import ohos.media.image.ImageSource;
 import ohos.media.image.PixelMap;
-import ohos.multimodalinput.event.RotationEvent;
 
 import java.nio.charset.StandardCharsets;
 
@@ -31,9 +25,9 @@ public class MessagingAbilitySlice extends AbilitySlice {
     private static final int FACTOR = 3;
     int rotationEventCount = 0;
 
+    private Text lastReceivedImageTitle;
     private Image lastReceivedImage;
     private ScrollView scrollView;
-    private Text lastReceivedMessage;
 
     private TaskDispatcher uiDispatcher;
     private P2pClient p2pClient;
@@ -47,17 +41,16 @@ public class MessagingAbilitySlice extends AbilitySlice {
                 case HiWearMessage.MESSAGE_TYPE_DATA:
                     final String text = new String(message.getData());
                     LogUtils.d(TAG, "Received text: " + text);
-                    uiDispatcher.syncDispatch(() -> {
-                        lastReceivedMessage.setText(text);
-                    });
                     break;
                 case HiWearMessage.MESSAGE_TYPE_FILE:
                     LogUtils.d(TAG, "Received file.");
                     final PixelMap pixelMap = ImageSource.create(message.getFile(),
                             new ImageSource.SourceOptions())
                             .createPixelmap(new ImageSource.DecodingOptions());
-                    uiDispatcher.syncDispatch(() -> {
+                    uiDispatcher.syncDispatch(()-> {
                         lastReceivedImage.setPixelMap(pixelMap);
+                        lastReceivedImage.setVisibility(Component.VISIBLE);
+                        lastReceivedImageTitle.setVisibility(Component.VISIBLE);
                     });
                     break;
             }
@@ -91,7 +84,7 @@ public class MessagingAbilitySlice extends AbilitySlice {
     private void initViews() {
         scrollView = (ScrollView) findComponentById(ResourceTable.Id_scrollview_main);
         lastReceivedImage = (Image) findComponentById(ResourceTable.Id_image_received_image);
-        lastReceivedMessage = (Text) findComponentById(ResourceTable.Id_text_last_received_message);
+        lastReceivedImageTitle = (Text) findComponentById(ResourceTable.Id_image_received_title);
 
         final Button sendMessageButton = (Button) findComponentById(ResourceTable.Id_button_send_message);
         sendMessageButton.setClickedListener(component -> {

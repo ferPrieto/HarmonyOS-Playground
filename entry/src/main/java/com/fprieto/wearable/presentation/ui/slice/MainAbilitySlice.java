@@ -166,6 +166,7 @@ public class MainAbilitySlice extends AbilitySlice {
     public void onActive() {
         super.onActive();
         p2pClient.registerReceiver(receiver);
+        circleMenu.startOpenMenuAnima();
     }
 
     @Override

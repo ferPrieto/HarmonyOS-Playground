@@ -10,6 +10,7 @@ import com.huawei.watch.kit.hiwear.p2p.Receiver;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.Button;
+import ohos.agp.components.Image;
 import ohos.agp.components.ScrollView;
 import ohos.app.dispatcher.TaskDispatcher;
 import ohos.media.image.ImageSource;
@@ -74,27 +75,32 @@ public class MainAbilitySlice extends AbilitySlice {
     private void initViews() {
         scrollView = (ScrollView) findComponentById(ResourceTable.Id_scrollview_main);
 
-        final Button healthButton = (Button) findComponentById(ResourceTable.Id_button_health);
+        final Image healthButton = (Image) findComponentById(ResourceTable.Id_button_health);
         healthButton.setClickedListener(component -> {
             present(new HealthAbilitySlice(), new Intent());
         });
 
-        final Button messagingButton = (Button) findComponentById(ResourceTable.Id_button_messaging);
+        final Image messagingButton = (Image) findComponentById(ResourceTable.Id_button_messaging);
         messagingButton.setClickedListener(component -> {
             present(new MessagingAbilitySlice(), new Intent());
         });
 
-        final Button recordButton = (Button) findComponentById(ResourceTable.Id_button_record_audio);
+        final Image audioButton = (Image) findComponentById(ResourceTable.Id_button_audio);
+        audioButton.setClickedListener(component -> {
+            present(new RecordAudioAbilitySlice(), new Intent());
+        });
+
+        final Image recordButton = (Image) findComponentById(ResourceTable.Id_button_record_audio);
         recordButton.setClickedListener(component -> {
             present(new RecordAudioAbilitySlice(), new Intent());
         });
 
-        final Button remotePlayerButton = (Button) findComponentById(ResourceTable.Id_button_play_remote_video);
+        final Image remotePlayerButton = (Image) findComponentById(ResourceTable.Id_button_play_remote_video);
         remotePlayerButton.setClickedListener(component -> {
             present(new RemoteVideoPlayerAbilitySlice(), new Intent());
         });
 
-        final Button playAudioButton = (Button) findComponentById(ResourceTable.Id_button_play_audio);
+        final Image playAudioButton = (Image) findComponentById(ResourceTable.Id_button_play_audio);
         playAudioButton.setClickedListener(component -> {
             present(new AudioPlayerAbilitySlice(), new Intent());
         });
@@ -104,7 +110,7 @@ public class MainAbilitySlice extends AbilitySlice {
             present(new LocationAbilitySlice(), new Intent());
         });
 
-        final Button jokeButton = (Button) findComponentById(ResourceTable.Id_button_joke);
+        final Image jokeButton = (Image) findComponentById(ResourceTable.Id_button_joke);
         jokeButton.setClickedListener(component -> {
             present(new JokeAbilitySlice(), new Intent());
         });

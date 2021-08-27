@@ -12,59 +12,59 @@
         ohos:width="match_parent"
         ohos:orientation="vertical">
 
-        <Button
+        <Image
             ohos:id="$+id:button_health"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:background_element="$graphic:button_background"
             ohos:layout_alignment="horizontal_center"
-            ohos:padding="10fp"
-            ohos:text="Health"
-            ohos:text_color="#FFFFFF"
+            ohos:image_src="$media:health"
             ohos:top_margin="16fp"/>
 
-        <Button
+        <Image
             ohos:id="$+id:button_messaging"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:background_element="$graphic:button_background"
             ohos:layout_alignment="horizontal_center"
-            ohos:padding="10fp"
-            ohos:text="Messaging"
-            ohos:text_color="#FFFFFF"
+            ohos:image_src="$media:messaging"
             ohos:top_margin="16fp"/>
 
-        <Button
+        <Image
+            ohos:id="$+id:button_audio"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:layout_alignment="horizontal_center"
+            ohos:image_src="audio"
+            ohos:top_margin="16fp"/>
+
+        <Image
             ohos:id="$+id:button_record_audio"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:background_element="$graphic:button_background"
             ohos:layout_alignment="horizontal_center"
-            ohos:padding="10fp"
+            ohos:image_src="audio"
+            ohos:visibility="hide"
             ohos:text="Audio Recorder"
             ohos:text_color="#FFFFFF"
             ohos:top_margin="16fp"/>
 
-        <Button
+        <Image
             ohos:id="$+id:button_play_audio"
             ohos:height="match_content"
             ohos:width="match_content"
             ohos:background_element="$graphic:button_background"
             ohos:layout_alignment="horizontal_center"
             ohos:padding="10fp"
+            ohos:visibility="hide"
             ohos:text="Audio Player"
             ohos:text_color="#FFFFFF"
             ohos:top_margin="16fp"/>
 
-        <Button
+        <Image
             ohos:id="$+id:button_play_remote_video"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:background_element="$graphic:button_background"
             ohos:layout_alignment="horizontal_center"
-            ohos:padding="10fp"
-            ohos:text="Remote Video Player"
-            ohos:text_color="#FFFFFF"
+            ohos:image_src="$media:videoplayer"
             ohos:top_margin="16fp"/>
 
         <Button
@@ -75,20 +75,18 @@
             ohos:bottom_margin="16fp"
             ohos:layout_alignment="horizontal_center"
             ohos:padding="10fp"
+            ohos:visibility="hide"
             ohos:text="Get Location"
             ohos:text_color="#FFFFFF"
             ohos:top_margin="16fp"/>
 
-        <Button
+        <Image
             ohos:id="$+id:button_joke"
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:background_element="$graphic:button_background"
             ohos:bottom_margin="16fp"
+            ohos:image_src="$media:weather"
             ohos:layout_alignment="horizontal_center"
-            ohos:padding="10fp"
-            ohos:text="Get Jokes"
-            ohos:text_color="#FFFFFF"
             ohos:top_margin="16fp"/>
     </DirectionalLayout>
 </ScrollView>

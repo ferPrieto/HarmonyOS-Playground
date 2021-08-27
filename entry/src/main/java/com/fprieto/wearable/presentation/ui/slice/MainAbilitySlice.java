@@ -1,6 +1,9 @@
 package com.fprieto.wearable.presentation.ui.slice;
 
 import com.fprieto.wearable.ResourceTable;
+import com.fprieto.wearable.menu.CircleMenu;
+import com.fprieto.wearable.menu.OnMenuSelectedListener;
+import com.fprieto.wearable.menu.OnMenuStatusChangeListener;
 import com.fprieto.wearable.presentation.ui.slice.joke.JokeAbilitySlice;
 import com.fprieto.wearable.util.LogUtils;
 import com.huawei.watch.kit.hiwear.HiWear;
@@ -12,6 +15,7 @@ import ohos.aafwk.content.Intent;
 import ohos.agp.components.Button;
 import ohos.agp.components.Image;
 import ohos.agp.components.ScrollView;
+import ohos.agp.utils.Color;
 import ohos.app.dispatcher.TaskDispatcher;
 import ohos.media.image.ImageSource;
 import ohos.media.image.PixelMap;
@@ -26,6 +30,8 @@ public class MainAbilitySlice extends AbilitySlice {
     int rotationEventCount = 0;
 
     private ScrollView scrollView;
+    private CircleMenu circleMenu;
+
 
     private TaskDispatcher uiDispatcher;
     private P2pClient p2pClient;
@@ -113,6 +119,26 @@ public class MainAbilitySlice extends AbilitySlice {
         final Image jokeButton = (Image) findComponentById(ResourceTable.Id_button_joke);
         jokeButton.setClickedListener(component -> {
             present(new JokeAbilitySlice(), new Intent());
+        });
+
+        circleMenu = (CircleMenu) findComponentById(ResourceTable.Id_circle_menu);
+        circleMenu.setMainMenu(Color.getIntColor("#CDCDCD"), ResourceTable.Media_fire, ResourceTable.Media_fire)
+                .addSubMenu(Color.getIntColor("#258CFF"), ResourceTable.Media_health)
+                .addSubMenu(Color.getIntColor("#30A400"), ResourceTable.Media_weather)
+                .addSubMenu(Color.getIntColor("#FF4B32"), ResourceTable.Media_messaging)
+                .addSubMenu(Color.getIntColor("#FF6A00"),ResourceTable.Media_videoplayer)
+                .addSubMenu(Color.getIntColor("#8A39FF"), ResourceTable.Media_audio)
+                .setOnMenuSelectedListener(index -> {
+                }).setOnMenuStatusChangeListener(new OnMenuStatusChangeListener() {
+
+            @Override
+            public void onMenuOpened() {
+            }
+
+            @Override
+            public void onMenuClosed() {
+            }
+
         });
 
         scrollView.setReboundEffect(true);

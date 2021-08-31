@@ -2,7 +2,6 @@ package com.fprieto.wearable.presentation.ui.slice;
 
 import com.fprieto.wearable.ResourceTable;
 import com.fprieto.wearable.menu.CircleMenu;
-import com.fprieto.wearable.menu.OnMenuSelectedListener;
 import com.fprieto.wearable.menu.OnMenuStatusChangeListener;
 import com.fprieto.wearable.presentation.ui.slice.joke.JokeAbilitySlice;
 import com.fprieto.wearable.util.LogUtils;
@@ -83,7 +82,7 @@ public class MainAbilitySlice extends AbilitySlice {
 
         final Image healthButton = (Image) findComponentById(ResourceTable.Id_button_health);
         healthButton.setClickedListener(component -> {
-            present(new HealthAbilitySlice(), new Intent());
+
         });
 
         final Image messagingButton = (Image) findComponentById(ResourceTable.Id_button_messaging);
@@ -122,24 +121,46 @@ public class MainAbilitySlice extends AbilitySlice {
         });
 
         circleMenu = (CircleMenu) findComponentById(ResourceTable.Id_circle_menu);
-        circleMenu.setMainMenu(Color.getIntColor("#CDCDCD"), ResourceTable.Media_fire, ResourceTable.Media_fire)
-                .addSubMenu(Color.getIntColor("#258CFF"), ResourceTable.Media_health)
+        circleMenu.addSubMenu(Color.getIntColor("#258CFF"), ResourceTable.Media_health)
                 .addSubMenu(Color.getIntColor("#30A400"), ResourceTable.Media_weather)
                 .addSubMenu(Color.getIntColor("#FF4B32"), ResourceTable.Media_messaging)
-                .addSubMenu(Color.getIntColor("#FF6A00"),ResourceTable.Media_videoplayer)
+                .addSubMenu(Color.getIntColor("#FF6A00"), ResourceTable.Media_videoplayer)
                 .addSubMenu(Color.getIntColor("#8A39FF"), ResourceTable.Media_audio)
                 .setOnMenuSelectedListener(index -> {
-                }).setOnMenuStatusChangeListener(new OnMenuStatusChangeListener() {
+                    switch (index) {
+                        case 0: {
+                            present(new HealthAbilitySlice(), new Intent());
+                            break;
+                        }
+                        case 1: {
+                            present(new JokeAbilitySlice(), new Intent());
+                            break;
+                        }
+                        case 2: {
+                            present(new MessagingAbilitySlice(), new Intent());
+                            break;
+                        }
+                        case 3: {
+                            present(new RemoteVideoPlayerAbilitySlice(), new Intent());
+                            break;
+                        }
+                        case 4: {
+                            present(new RecordAudioAbilitySlice(), new Intent());
+                            break;
+                        }
+                    }
+                })
+                .setOnMenuStatusChangeListener(new OnMenuStatusChangeListener() {
 
-            @Override
-            public void onMenuOpened() {
-            }
+                    @Override
+                    public void onMenuOpened() {
+                    }
 
-            @Override
-            public void onMenuClosed() {
-            }
+                    @Override
+                    public void onMenuClosed() {
+                    }
 
-        });
+                });
 
         scrollView.setReboundEffect(true);
         scrollView.setVibrationEffectEnabled(true);

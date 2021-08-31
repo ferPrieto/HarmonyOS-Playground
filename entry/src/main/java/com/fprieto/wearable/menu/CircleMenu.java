@@ -1,6 +1,5 @@
 package com.fprieto.wearable.menu;
 
-
 import ohos.agp.animation.Animator;
 import ohos.agp.animation.AnimatorValue;
 import ohos.agp.components.AttrSet;
@@ -13,7 +12,6 @@ import ohos.agp.utils.Point;
 import ohos.agp.utils.RectFloat;
 import ohos.agp.window.service.DisplayManager;
 import ohos.app.Context;
-import ohos.media.image.PixelMap;
 import ohos.multimodalinput.event.MmiPoint;
 import ohos.multimodalinput.event.TouchEvent;
 
@@ -53,8 +51,6 @@ public class CircleMenu extends ComponentContainer implements Component.DrawTask
     private float pathLength;
 
     private int mainMenuColor;
-
-    private PixelMapElement openMenuIcon, closeMenuIcon;
 
     private List<Integer> subMenuColorList;
 
@@ -158,7 +154,6 @@ public class CircleMenu extends ComponentContainer implements Component.DrawTask
 
         centerX = getEstimatedWidth() / 2;
         centerY = getEstimatedHeight() / 2;
-        resetMainDrawableBounds();
 
         path.addCircle(centerX, centerY, circleMenuRadius, Path.Direction.CLOCK_WISE);
         pathMeasure.setPath(path, true);
@@ -175,8 +170,7 @@ public class CircleMenu extends ComponentContainer implements Component.DrawTask
             case STATUS_MENU_CLOSED:
                 break;
             case STATUS_MENU_OPEN:
-                drawSubMenu(canvas);
-                break;
+            case STATUS_MENU_CANCEL:
             case STATUS_MENU_OPENED:
                 drawSubMenu(canvas);
                 break;
@@ -186,9 +180,6 @@ public class CircleMenu extends ComponentContainer implements Component.DrawTask
                 break;
             case STATUS_MENU_CLOSE_CLEAR:
                 drawCircleMenu(canvas);
-                break;
-            case STATUS_MENU_CANCEL:
-                drawSubMenu(canvas);
                 break;
         }
     }
@@ -310,11 +301,10 @@ public class CircleMenu extends ComponentContainer implements Component.DrawTask
                 pressed = true;
                 if (index != -1) {
                     clickIndex = index;
-                    updatePressEffect(index, pressed);
+                    updatePressEffect(index, true);
                 }
                 break;
             case TouchEvent.OTHER_POINT_DOWN:
-                break;
             case TouchEvent.OTHER_POINT_UP:
                 break;
             case TouchEvent.POINT_MOVE:
@@ -327,7 +317,7 @@ public class CircleMenu extends ComponentContainer implements Component.DrawTask
                 pressed = false;
                 if (index != -1) {
                     clickIndex = index;
-                    updatePressEffect(index, pressed);
+                    updatePressEffect(index, false);
                 }
                 if (index == 0) {
                     status = STATUS_MENU_OPEN;
@@ -339,10 +329,8 @@ public class CircleMenu extends ComponentContainer implements Component.DrawTask
                 } else {
                     if (status == STATUS_MENU_OPENED && index != -1) {
                         status = STATUS_MENU_CLOSE;
-                        if (onMenuSelectedListener != null)
-                            onMenuSelectedListener.onMenuSelected(index - 1);
                         rotateAngle = clickIndex * (360 / itemNum) - (360 / itemNum) - 90;
-                        startCloseMeunAnima();
+                        startCloseMenuAnimation(index - 1);
                     }
                 }
                 break;
@@ -426,7 +414,6 @@ public class CircleMenu extends ComponentContainer implements Component.DrawTask
     }
 
     private void startCancelMenuAnima() {
-        //        ofFloat(1.f, 100.f)
         AnimatorValue cancelAnima = new AnimatorValue();
         cancelAnima.setDuration(500);
         cancelAnima.setCurveType(Animator.CurveType.ANTICIPATE);
@@ -467,8 +454,7 @@ public class CircleMenu extends ComponentContainer implements Component.DrawTask
         cancelAnima.start();
     }
 
-    private void startCloseMeunAnima() {
-        //        ofFloat(1.f, 100.f)
+    private void startCloseMenuAnimation(int itemSelected) {
         AnimatorValue rotateAnima = new AnimatorValue();
         AnimatorValue aroundAnima = new AnimatorValue();
         aroundAnima.setDuration(600);
@@ -507,7 +493,6 @@ public class CircleMenu extends ComponentContainer implements Component.DrawTask
             invalidate();
         });
         aroundAnima.start();
-        //        ofFloat(1.f, 100.f)
         AnimatorValue spreadAnima = new AnimatorValue();
         spreadAnima.setDuration(600);
         spreadAnima.setCurveType(Animator.CurveType.LINEAR);
@@ -559,6 +544,8 @@ public class CircleMenu extends ComponentContainer implements Component.DrawTask
 
             @Override
             public void onEnd(Animator animator) {
+                if (onMenuSelectedListener != null)
+                    onMenuSelectedListener.onMenuSelected(itemSelected);
             }
 
             @Override
@@ -592,38 +579,6 @@ public class CircleMenu extends ComponentContainer implements Component.DrawTask
         return pixelMapElement;
     }
 
-    private PixelMapElement convertBitmap(PixelMap bitmap) {
-        return new PixelMapElement(bitmap);
-    }
-
-    private void resetMainDrawableBounds() {
-        openMenuIcon.setBounds(centerX - iconSize / 2, centerY - iconSize / 2,
-                centerX + iconSize / 2, centerY + iconSize / 2);
-        closeMenuIcon.setBounds(centerX - iconSize / 2, centerY - iconSize / 2,
-                centerX + iconSize / 2, centerY + iconSize / 2);
-    }
-
-    public CircleMenu setMainMenu(int mainMenuColor, int openMenuRes, int closeMenuRes) {
-        openMenuIcon = convertDrawable(openMenuRes);
-        closeMenuIcon = convertDrawable(closeMenuRes);
-        this.mainMenuColor = mainMenuColor;
-        return this;
-    }
-
-    public CircleMenu setMainMenu(int mainMenuColor, PixelMap openMenuBitmap, PixelMap closeMenuBitmap) {
-        openMenuIcon = convertBitmap(openMenuBitmap);
-        closeMenuIcon = convertBitmap(closeMenuBitmap);
-        this.mainMenuColor = mainMenuColor;
-        return this;
-    }
-
-    public CircleMenu setMainMenu(int mainMenuColor, PixelMapElement openMenuDrawable, PixelMapElement closeMenuDrawable) {
-        openMenuIcon = openMenuDrawable;
-        closeMenuIcon = closeMenuDrawable;
-        this.mainMenuColor = mainMenuColor;
-        return this;
-    }
-
     public CircleMenu addSubMenu(int menuColor, int menuRes) {
         if (subMenuColorList.size() < MAX_SUBMENU_NUM && subMenuDrawableList.size() < MAX_SUBMENU_NUM) {
             subMenuColorList.add(menuColor);
@@ -631,42 +586,6 @@ public class CircleMenu extends ComponentContainer implements Component.DrawTask
             itemNum = Math.min(subMenuColorList.size(), subMenuDrawableList.size());
         }
         return this;
-    }
-
-    public CircleMenu addSubMenu(int menuColor, PixelMap menuBitmap) {
-        if (subMenuColorList.size() < MAX_SUBMENU_NUM && subMenuDrawableList.size() < MAX_SUBMENU_NUM) {
-            subMenuColorList.add(menuColor);
-            subMenuDrawableList.add(convertBitmap(menuBitmap));
-            itemNum = Math.min(subMenuColorList.size(), subMenuDrawableList.size());
-        }
-        return this;
-    }
-
-    public CircleMenu addSubMenu(int menuColor, PixelMapElement menuDrawable) {
-        if (subMenuColorList.size() < MAX_SUBMENU_NUM && subMenuDrawableList.size() < MAX_SUBMENU_NUM) {
-            subMenuColorList.add(menuColor);
-            subMenuDrawableList.add(menuDrawable);
-            itemNum = Math.min(subMenuColorList.size(), subMenuDrawableList.size());
-        }
-        return this;
-    }
-
-    public void openMenu() {
-        if (status == STATUS_MENU_CLOSED) {
-            status = STATUS_MENU_OPEN;
-            startOpenMenuAnima();
-        }
-    }
-
-    public void closeMenu() {
-        if (status == STATUS_MENU_OPENED) {
-            status = STATUS_MENU_CANCEL;
-            startCancelMenuAnima();
-        }
-    }
-
-    public boolean isOpened() {
-        return status == STATUS_MENU_OPENED;
     }
 
     public CircleMenu setOnMenuSelectedListener(OnMenuSelectedListener listener) {

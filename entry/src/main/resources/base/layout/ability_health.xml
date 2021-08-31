@@ -4,6 +4,7 @@
     ohos:id="$+id:scrollview_main"
     ohos:height="match_parent"
     ohos:width="match_parent"
+    ohos:background_element="$graphic:ability_background"
     ohos:bottom_padding="16vp"
     ohos:focusable="focus_enable">
 
@@ -18,6 +19,7 @@
             ohos:alignment="horizontal_center"
             ohos:layout_alignment="horizontal_center"
             ohos:text="Health Summary"
+            ohos:text_color="#C1C1C1"
             ohos:text_font="sans-serif-medium"
             ohos:text_size="24fp"
             ohos:top_margin="60fp"/>
@@ -28,7 +30,7 @@
             ohos:alignment="horizontal_center"
             ohos:layout_alignment="horizontal_center"
             ohos:orientation="horizontal"
-            ohos:top_margin="60fp">
+            ohos:top_margin="10fp">
 
             <Image
                 ohos:id="$+id:imageCalories"
@@ -42,34 +44,16 @@
                 ohos:width="match_content"
                 ohos:alignment="horizontal_center"
                 ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:text_size="18fp"
-                ohos:visibility="hide"/>
-
-            <RoundProgressBar
-                ohos:id="$+id:round_progress_bar_calories"
-                ohos:height="48fp"
-                ohos:width="48fp"
-                ohos:alignment="horizontal_center"
-                ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:progress="0"
-                ohos:progress_width="10vp"/>
-
-        </DirectionalLayout>
-
-        <DirectionalLayout
-            ohos:height="match_content"
-            ohos:width="match_parent"
-            ohos:alignment="horizontal_center"
-            ohos:layout_alignment="horizontal_center"
-            ohos:orientation="horizontal"
-            ohos:top_margin="20fp">
+                ohos:text="-"
+                ohos:text_color="#C1C1C1"
+                ohos:start_margin="20fp"
+                ohos:text_size="18fp" />
 
             <Image
                 ohos:id="$+id:imageHeartRate"
                 ohos:height="match_content"
                 ohos:width="match_content"
+                ohos:start_margin="35fp"
                 ohos:image_src="$media:heartRate"/>
 
             <Text
@@ -78,19 +62,11 @@
                 ohos:width="match_content"
                 ohos:alignment="horizontal_center"
                 ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:text_size="18fp"
-                ohos:visibility="hide"/>
+                ohos:text="-"
+                ohos:text_color="#C1C1C1"
+                ohos:start_margin="20fp"
+                ohos:text_size="18fp" />
 
-            <RoundProgressBar
-                ohos:id="$+id:round_progress_bar_heart_rate"
-                ohos:height="48fp"
-                ohos:width="48fp"
-                ohos:alignment="horizontal_center"
-                ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:progress="0"
-                ohos:progress_width="10vp"/>
         </DirectionalLayout>
 
         <DirectionalLayout
@@ -113,33 +89,16 @@
                 ohos:width="match_content"
                 ohos:alignment="horizontal_center"
                 ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
                 ohos:text_size="18fp"
-                ohos:visibility="hide"/>
-
-            <RoundProgressBar
-                ohos:id="$+id:round_progress_bar_steps"
-                ohos:height="48fp"
-                ohos:width="48fp"
-                ohos:alignment="horizontal_center"
-                ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:progress="0"
-                ohos:progress_width="10vp"/>
-        </DirectionalLayout>
-
-        <DirectionalLayout
-            ohos:height="match_content"
-            ohos:width="match_parent"
-            ohos:alignment="horizontal_center"
-            ohos:layout_alignment="horizontal_center"
-            ohos:orientation="horizontal"
-            ohos:top_margin="20fp">
+                ohos:start_margin="20fp"
+                ohos:text="-"
+                ohos:text_color="#C1C1C1"/>
 
             <Image
                 ohos:id="$+id:imageOxygen"
                 ohos:height="match_content"
                 ohos:width="match_content"
+                ohos:start_margin="35fp"
                 ohos:image_src="$media:oxygen"/>
 
             <Text
@@ -148,19 +107,10 @@
                 ohos:width="match_content"
                 ohos:alignment="horizontal_center"
                 ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
+                ohos:start_margin="20fp"
                 ohos:text_size="18fp"
-                ohos:visibility="hide"/>
-
-            <RoundProgressBar
-                ohos:id="$+id:round_progress_bar_oxygen"
-                ohos:height="48fp"
-                ohos:width="48fp"
-                ohos:alignment="horizontal_center"
-                ohos:layout_alignment="horizontal_center"
-                ohos:left_margin="20px"
-                ohos:progress="0"
-                ohos:progress_width="10vp"/>
+                ohos:text="-"
+                ohos:text_color="#C1C1C1"/>
         </DirectionalLayout>
     </DirectionalLayout>
 </ScrollView>

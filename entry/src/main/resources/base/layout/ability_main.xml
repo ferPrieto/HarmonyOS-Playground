@@ -4,6 +4,7 @@
     ohos:height="match_parent"
     ohos:width="match_parent"
     ohos:alignment="center"
+    ohos:background_element="$graphic:ability_background"
     ohos:orientation="vertical">
 
     <com.fprieto.wearable.menu.CircleMenu

@@ -2,59 +2,61 @@
 
 <DirectionalLayout
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:id="$+id:parent_wrapper"
     ohos:height="match_parent"
     ohos:width="match_parent"
-    ohos:background_element="#000000"
-    ohos:id="$+id:parent_wrapper"
     ohos:alignment="center"
     ohos:orientation="vertical">
 
     <DirectionalLayout
+        ohos:id="$+id:options_wrapper"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:alignment="center"
+        ohos:orientation="vertical">
+
+        <Button
+            ohos:id="$+id:button_local_file"
             ohos:height="match_content"
-            ohos:width="match_parent"
-            ohos:id="$+id:options_wrapper"
-            ohos:alignment="center"
-            ohos:orientation="vertical">
+            ohos:width="match_content"
+            ohos:background_element="$graphic:button_background"
+            ohos:layout_alignment="horizontal_center"
+            ohos:padding="10fp"
+            ohos:text="Play Local File"
+            ohos:text_color="#FFFFFF"
+            ohos:top_margin="16fp"/>
 
         <Button
-                ohos:id="$+id:button_local_file"
-                ohos:height="match_content"
-                ohos:width="match_content"
-                ohos:background_element="$graphic:background_ability_main"
-                ohos:text="Play Local File"
-                ohos:layout_alignment="horizontal_center"
-                ohos:padding="8fp"
-                ohos:top_margin="16fp"/>
+            ohos:id="$+id:button_radio"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:background_element="$graphic:button_background"
+            ohos:layout_alignment="horizontal_center"
+            ohos:padding="10fp"
+            ohos:text="Play Radio"
+            ohos:text_color="#FFFFFF"
+            ohos:top_margin="16fp"/>
 
         <Button
-                ohos:id="$+id:button_radio"
-                ohos:height="match_content"
-                ohos:width="match_content"
-                ohos:text="Play Radio"
-                ohos:background_element="$graphic:background_ability_main"
-                ohos:layout_alignment="horizontal_center"
-                ohos:padding="8fp"
-                ohos:top_margin="16fp"/>
-
-        <Button
-                ohos:id="$+id:button_last_recording"
-                ohos:height="match_content"
-                ohos:width="match_content"
-                ohos:text="Play Last Recording"
-                ohos:background_element="$graphic:background_ability_main"
-                ohos:layout_alignment="horizontal_center"
-                ohos:padding="8fp"
-                ohos:top_margin="16fp"/>
+            ohos:id="$+id:button_last_recording"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:background_element="$graphic:button_background"
+            ohos:layout_alignment="horizontal_center"
+            ohos:padding="10fp"
+            ohos:text="Play Last Recording"
+            ohos:text_color="#FFFFFF"
+            ohos:top_margin="16fp"/>
 
     </DirectionalLayout>
 
     <DirectionalLayout
+        ohos:id="$+id:controller_wrapper"
         ohos:height="match_content"
         ohos:width="match_parent"
         ohos:alignment="center"
-        ohos:id="$+id:controller_wrapper"
-        ohos:visibility="hide"
-        ohos:orientation="horizontal">
+        ohos:orientation="horizontal"
+        ohos:visibility="hide">
 
         <Image
             ohos:id="$+id:imgVolumeLoud"
@@ -66,9 +68,9 @@
             ohos:id="$+id:imgPlayer"
             ohos:height="match_content"
             ohos:width="match_content"
+            ohos:image_src="$media:play_arrow"
             ohos:left_margin="80px"
-            ohos:right_margin="80px"
-            ohos:image_src="$media:play_arrow"/>
+            ohos:right_margin="80px"/>
 
         <Image
             ohos:id="$+id:imgVolumeQuiet"
@@ -79,14 +81,14 @@
     </DirectionalLayout>
 
     <Text
+        ohos:id="$+id:file_name"
         ohos:height="match_content"
         ohos:width="match_content"
-        ohos:visibility="hide"
-        ohos:top_margin="50px"
-        ohos:id="$+id:file_name"
         ohos:text="Song Title"
+        ohos:text_color="#FFFFFF"
         ohos:text_size="30px"
         ohos:text_weight="700"
-        ohos:text_color="#FFFFFF"/>
+        ohos:top_margin="50px"
+        ohos:visibility="hide"/>
 
 </DirectionalLayout>

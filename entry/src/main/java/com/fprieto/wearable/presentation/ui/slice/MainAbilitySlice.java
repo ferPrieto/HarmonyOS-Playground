@@ -1,6 +1,8 @@
 package com.fprieto.wearable.presentation.ui.slice;
 
 import com.fprieto.wearable.ResourceTable;
+import com.fprieto.wearable.menu.CircleMenu;
+import com.fprieto.wearable.menu.OnMenuStatusChangeListener;
 import com.fprieto.wearable.presentation.ui.slice.joke.JokeAbilitySlice;
 import com.fprieto.wearable.util.LogUtils;
 import com.huawei.watch.kit.hiwear.HiWear;
@@ -9,9 +11,7 @@ import com.huawei.watch.kit.hiwear.p2p.P2pClient;
 import com.huawei.watch.kit.hiwear.p2p.Receiver;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
-import ohos.agp.components.Button;
-import ohos.agp.components.ScrollView;
-import ohos.app.dispatcher.TaskDispatcher;
+import ohos.agp.utils.Color;
 import ohos.media.image.ImageSource;
 import ohos.media.image.PixelMap;
 
@@ -21,12 +21,9 @@ public class MainAbilitySlice extends AbilitySlice {
 
     private final static String peerPkgName = "com.fprieto.hms.wearable";
     private final static String peerFinger = "CFCC7E8B7AF0C5B2B488190B17B897BB483541B26A7F15065602D716E586FEDA";
-    private static final int FACTOR = 3;
-    int rotationEventCount = 0;
 
-    private ScrollView scrollView;
+    private CircleMenu circleMenu;
 
-    private TaskDispatcher uiDispatcher;
     private P2pClient p2pClient;
 
     private final Receiver receiver = message -> {
@@ -52,8 +49,6 @@ public class MainAbilitySlice extends AbilitySlice {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_main);
 
-        uiDispatcher = getUITaskDispatcher();
-
         initP2PClient();
         initViews();
     }
@@ -72,68 +67,54 @@ public class MainAbilitySlice extends AbilitySlice {
     }
 
     private void initViews() {
-        scrollView = (ScrollView) findComponentById(ResourceTable.Id_scrollview_main);
+        circleMenu = (CircleMenu) findComponentById(ResourceTable.Id_circle_menu);
+        circleMenu.addSubMenu(Color.getIntColor("#258CFF"), ResourceTable.Media_health)
+                .addSubMenu(Color.getIntColor("#30A400"), ResourceTable.Media_weather)
+                .addSubMenu(Color.getIntColor("#FF4B32"), ResourceTable.Media_messaging)
+                .addSubMenu(Color.getIntColor("#FF6A00"), ResourceTable.Media_videoplayer)
+                .addSubMenu(Color.getIntColor("#8A39FF"), ResourceTable.Media_audio)
+                .setOnMenuSelectedListener(index -> {
+                    switch (index) {
+                        case 0: {
+                            present(new HealthAbilitySlice(), new Intent());
+                            break;
+                        }
+                        case 1: {
+                            present(new JokeAbilitySlice(), new Intent());
+                            break;
+                        }
+                        case 2: {
+                            present(new MessagingAbilitySlice(), new Intent());
+                            break;
+                        }
+                        case 3: {
+                            present(new RemoteVideoPlayerAbilitySlice(), new Intent());
+                            break;
+                        }
+                        case 4: {
+                            present(new AudioAbilitySlice(), new Intent());
+                            break;
+                        }
+                    }
+                })
+                .setOnMenuStatusChangeListener(new OnMenuStatusChangeListener() {
 
-        final Button healthButton = (Button) findComponentById(ResourceTable.Id_button_health);
-        healthButton.setClickedListener(component -> {
-            present(new HealthAbilitySlice(), new Intent());
-        });
+                    @Override
+                    public void onMenuOpened() {
+                    }
 
-        final Button messagingButton = (Button) findComponentById(ResourceTable.Id_button_messaging);
-        messagingButton.setClickedListener(component -> {
-            present(new MessagingAbilitySlice(), new Intent());
-        });
+                    @Override
+                    public void onMenuClosed() {
+                    }
 
-        final Button recordButton = (Button) findComponentById(ResourceTable.Id_button_record_audio);
-        recordButton.setClickedListener(component -> {
-            present(new RecordAudioAbilitySlice(), new Intent());
-        });
-
-        final Button remotePlayerButton = (Button) findComponentById(ResourceTable.Id_button_play_remote_video);
-        remotePlayerButton.setClickedListener(component -> {
-            present(new RemoteVideoPlayerAbilitySlice(), new Intent());
-        });
-
-        final Button playAudioButton = (Button) findComponentById(ResourceTable.Id_button_play_audio);
-        playAudioButton.setClickedListener(component -> {
-            present(new AudioPlayerAbilitySlice(), new Intent());
-        });
-
-        final Button locationButton = (Button) findComponentById(ResourceTable.Id_button_location);
-        locationButton.setClickedListener(component -> {
-            present(new LocationAbilitySlice(), new Intent());
-        });
-
-        final Button jokeButton = (Button) findComponentById(ResourceTable.Id_button_joke);
-        jokeButton.setClickedListener(component -> {
-            present(new JokeAbilitySlice(), new Intent());
-        });
-
-        scrollView.setReboundEffect(true);
-        scrollView.setVibrationEffectEnabled(true);
-        scrollView.setTouchFocusable(true);
-        scrollView.requestFocus();
-        scrollView.setRotationEventListener((component, rotationEvent) -> {
-            if (rotationEvent != null) {
-                float rotationValue = rotationEvent.getRotationValue();
-                if (Math.abs(rotationEventCount) == FACTOR) {
-                    int y = scrollView.getScrollValue(1) + rotationEventCount / FACTOR + (rotationValue > 0 ? 10 : -10);
-                    scrollView.scrollTo(0, y);
-                    rotationEventCount = 0;
-                } else {
-                    rotationEventCount += rotationValue > 0 ? -1 : 1;
-                }
-                return true;
-            }
-            return false;
-        });
-        scrollView.setVibrationEffectEnabled(true);
+                });
     }
 
     @Override
     public void onActive() {
         super.onActive();
         p2pClient.registerReceiver(receiver);
+        circleMenu.startOpenMenuAnima();
     }
 
     @Override

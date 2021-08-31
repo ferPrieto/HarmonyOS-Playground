@@ -7,8 +7,8 @@
       "name": "1.0"
     },
     "apiVersion": {
-      "compatible": 5,
-      "target": 5,
+      "compatible": 6,
+      "target": 6,
       "releaseType": "Beta2"
     }
   },

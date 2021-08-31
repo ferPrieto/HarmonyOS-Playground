@@ -4,6 +4,7 @@
     ohos:id="$+id:scrollview_main"
     ohos:height="match_parent"
     ohos:width="match_parent"
+    ohos:background_element="$graphic:ability_background"
     ohos:bottom_padding="16vp"
     ohos:focusable="focus_enable">
 

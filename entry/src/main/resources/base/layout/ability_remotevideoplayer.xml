@@ -1,72 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<DirectionalLayout
+<ScrollView
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
-    ohos:height="match_content"
+    ohos:id="$+id:scrollview_main"
+    ohos:height="match_parent"
     ohos:width="match_parent"
-    ohos:orientation="vertical" >
-
-    <Text
-        ohos:height="match_content"
-        ohos:width="match_content"
-        ohos:layout_alignment="horizontal_center"
-        ohos:text="Remote Control"
-        ohos:text_font="sans-serif-medium"
-        ohos:text_size="20fp"
-        ohos:top_margin="40fp"/>
+    ohos:background_element="$graphic:ability_background"
+    ohos:bottom_padding="16vp"
+    ohos:focusable="focus_enable">
 
     <DirectionalLayout
-        ohos:id="$+id:parent_wrapper"
-        ohos:height="match_parent"
+        ohos:height="match_content"
         ohos:width="match_parent"
-        ohos:alignment="center"
-        ohos:top_margin="40fp"
-        ohos:orientation="horizontal">
+        ohos:orientation="vertical">
 
-        <Image
-            ohos:id="$+id:buttonPrevious"
+        <Text
             ohos:height="match_content"
             ohos:width="match_content"
-            ohos:image_src="$media:previous"
-            ohos:left_margin="20px"/>
+            ohos:layout_alignment="horizontal_center"
+            ohos:text="Remote Control"
+            ohos:text_font="sans-serif-medium"
+            ohos:text_color="#C1C1C1"
+            ohos:text_size="20fp"
+            ohos:top_margin="40fp"/>
 
-        <Image
-            ohos:id="$+id:buttonRewind"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:image_src="$media:rewind"
-            ohos:left_margin="20px"/>
+        <DirectionalLayout
+            ohos:id="$+id:parent_wrapper"
+            ohos:height="match_parent"
+            ohos:width="match_parent"
+            ohos:alignment="center"
+            ohos:background_element="$graphic:ability_background"
+            ohos:orientation="horizontal"
+            ohos:top_margin="40fp">
 
-        <Image
-            ohos:id="$+id:buttonPlay"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:image_src="$media:play"
-            ohos:left_margin="20px"
-            ohos:right_margin="20px"/>
+            <Image
+                ohos:id="$+id:buttonPrevious"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:image_src="$media:previous"
+                ohos:left_margin="20px"/>
 
-        <Image
-            ohos:id="$+id:buttonPause"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:image_src="$media:pause"
-            ohos:left_margin="20px"
-            ohos:right_margin="20px"
-            ohos:visibility="hide"/>
+            <Image
+                ohos:id="$+id:buttonRewind"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:image_src="$media:rewind"
+                ohos:left_margin="20px"/>
 
-        <Image
-            ohos:id="$+id:buttonFastForward"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:image_src="$media:fastforward"
-            ohos:right_margin="20px"/>
+            <Image
+                ohos:id="$+id:buttonPlay"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:image_src="$media:play"
+                ohos:left_margin="20px"
+                ohos:right_margin="20px"/>
 
-        <Image
-            ohos:id="$+id:buttonNext"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:image_src="$media:next"
-            ohos:right_margin="20px"/>
+            <Image
+                ohos:id="$+id:buttonPause"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:image_src="$media:pause"
+                ohos:left_margin="20px"
+                ohos:right_margin="20px"
+                ohos:visibility="hide"/>
 
+            <Image
+                ohos:id="$+id:buttonFastForward"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:image_src="$media:fastforward"
+                ohos:right_margin="20px"/>
+
+            <Image
+                ohos:id="$+id:buttonNext"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:image_src="$media:next"
+                ohos:right_margin="20px"/>
+
+        </DirectionalLayout>
     </DirectionalLayout>
-
-</DirectionalLayout>
+</ScrollView>

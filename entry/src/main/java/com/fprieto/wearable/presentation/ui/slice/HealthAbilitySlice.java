@@ -1,31 +1,21 @@
 package com.fprieto.wearable.presentation.ui.slice;
 
 import com.fprieto.wearable.ResourceTable;
-import com.fprieto.wearable.model.DataMessage;
-import com.fprieto.wearable.model.PlayerCommand;
-import com.fprieto.wearable.presentation.ui.slice.joke.JokeAbilitySlice;
 import com.fprieto.wearable.util.LogUtils;
-import com.google.gson.Gson;
 import com.huawei.watch.kit.hiwear.HiWear;
 import com.huawei.watch.kit.hiwear.p2p.HiWearMessage;
 import com.huawei.watch.kit.hiwear.p2p.P2pClient;
 import com.huawei.watch.kit.hiwear.p2p.Receiver;
-import com.huawei.watch.kit.hiwear.p2p.SendCallback;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
-import ohos.agp.components.*;
-import ohos.agp.components.Component.RotationEventListener;
+import ohos.agp.components.ScrollView;
+import ohos.agp.components.Text;
 import ohos.app.dispatcher.TaskDispatcher;
-import ohos.media.image.ImageSource;
-import ohos.media.image.PixelMap;
-import ohos.multimodalinput.event.RotationEvent;
 import ohos.sensor.agent.CategoryBodyAgent;
 import ohos.sensor.bean.CategoryBody;
 import ohos.sensor.data.CategoryBodyData;
 import ohos.sensor.listener.ICategoryBodyDataCallback;
 import ohos.utils.zson.ZSONObject;
-
-import java.nio.charset.StandardCharsets;
 
 public class HealthAbilitySlice extends AbilitySlice {
 
@@ -46,10 +36,6 @@ public class HealthAbilitySlice extends AbilitySlice {
     private Text stepsValue;
     private Text oxygenValue;
     private ScrollView scrollView;
-    private RoundProgressBar progressBarSteps;
-    private RoundProgressBar progressBarOxygen;
-    private RoundProgressBar progressBarHeartRate;
-    private RoundProgressBar progressBarCalories;
 
     private TaskDispatcher uiDispatcher;
     private P2pClient p2pClient;
@@ -65,29 +51,13 @@ public class HealthAbilitySlice extends AbilitySlice {
         final String messageValue = new String(message.getData());
         final String detailValue = messageValue.substring(messageValue.indexOf("-") + 2, messageValue.length());
         if (messageValue.contains("Calories")) {
-            uiDispatcher.syncDispatch(() -> {
-                caloriesValue.setText(detailValue);
-                progressBarCalories.setVisibility(Component.HIDE);
-                caloriesValue.setVisibility(Component.VISIBLE);
-            });
+            uiDispatcher.syncDispatch(() -> caloriesValue.setText(detailValue));
         } else if (messageValue.contains("HeartRate")) {
-            uiDispatcher.syncDispatch(() -> {
-                heartRateValue.setText(detailValue);
-                progressBarHeartRate.setVisibility(Component.HIDE);
-                heartRateValue.setVisibility(Component.VISIBLE);
-            });
+            uiDispatcher.syncDispatch(() -> heartRateValue.setText(detailValue));
         } else if (messageValue.contains("Steps")) {
-            uiDispatcher.syncDispatch(() -> {
-                stepsValue.setText(detailValue);
-                progressBarSteps.setVisibility(Component.HIDE);
-                stepsValue.setVisibility(Component.VISIBLE);
-            });
+            uiDispatcher.syncDispatch(() -> stepsValue.setText(detailValue));
         } else if (messageValue.contains("Oxygen")) {
-            uiDispatcher.syncDispatch(() -> {
-                oxygenValue.setText(detailValue);
-                progressBarOxygen.setVisibility(Component.HIDE);
-                oxygenValue.setVisibility(Component.VISIBLE);
-            });
+            uiDispatcher.syncDispatch(() -> oxygenValue.setText(detailValue));
         }
     }
 
@@ -166,11 +136,6 @@ public class HealthAbilitySlice extends AbilitySlice {
     }
 
     private void initViews() {
-        progressBarCalories = (RoundProgressBar) findComponentById(ResourceTable.Id_round_progress_bar_calories);
-        progressBarSteps = (RoundProgressBar) findComponentById(ResourceTable.Id_round_progress_bar_steps);
-        progressBarOxygen = (RoundProgressBar) findComponentById(ResourceTable.Id_round_progress_bar_oxygen);
-        progressBarHeartRate = (RoundProgressBar) findComponentById(ResourceTable.Id_round_progress_bar_heart_rate);
-
         caloriesValue = (Text) findComponentById(ResourceTable.Id_text_calories_value);
         heartRateValue = (Text) findComponentById(ResourceTable.Id_text_heart_rate_value);
         stepsValue = (Text) findComponentById(ResourceTable.Id_text_steps_value);

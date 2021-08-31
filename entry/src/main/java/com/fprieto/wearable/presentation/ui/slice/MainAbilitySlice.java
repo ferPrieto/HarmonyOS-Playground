@@ -68,11 +68,11 @@ public class MainAbilitySlice extends AbilitySlice {
 
     private void initViews() {
         circleMenu = (CircleMenu) findComponentById(ResourceTable.Id_circle_menu);
-        circleMenu.addSubMenu(Color.getIntColor("#258CFF"), ResourceTable.Media_health)
-                .addSubMenu(Color.getIntColor("#30A400"), ResourceTable.Media_weather)
-                .addSubMenu(Color.getIntColor("#FF4B32"), ResourceTable.Media_messaging)
-                .addSubMenu(Color.getIntColor("#FF6A00"), ResourceTable.Media_videoplayer)
-                .addSubMenu(Color.getIntColor("#8A39FF"), ResourceTable.Media_audio)
+        circleMenu.addSubMenu(Color.getIntColor("#30E8AE"), ResourceTable.Media_health)
+                .addSubMenu(Color.getIntColor("#D7376B"), ResourceTable.Media_weather)
+                .addSubMenu(Color.getIntColor("#69DEFF"), ResourceTable.Media_messaging)
+                .addSubMenu(Color.getIntColor("#A752FE"), ResourceTable.Media_videoplayer)
+                .addSubMenu(Color.getIntColor("#FBD56C"), ResourceTable.Media_audio)
                 .setOnMenuSelectedListener(index -> {
                     switch (index) {
                         case 0: {

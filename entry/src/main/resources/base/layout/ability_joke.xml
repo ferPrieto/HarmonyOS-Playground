@@ -3,13 +3,12 @@
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:height="match_parent"
     ohos:width="match_parent"
+    ohos:background_element="$graphic:ability_background"
     ohos:orientation="vertical">
-
     <Button
         ohos:id="$+id:button_get_joke"
         ohos:height="match_content"
         ohos:width="match_content"
-        ohos:background_element="$graphic:background_ability_main"
         ohos:layout_alignment="horizontal_center"
         ohos:padding="8fp"
         ohos:text="Get me a random joke!"
@@ -25,6 +24,7 @@
         ohos:auto_scrolling_count="unlimited"
         ohos:truncation_mode="auto_scrolling"
         ohos:id="$+id:text_joke"
+        ohos:text_color="#C1C1C1"
         ohos:height="match_content"
         ohos:width="200fp"/>
 

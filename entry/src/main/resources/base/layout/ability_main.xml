@@ -1,98 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<DirectionalLayout
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
-    ohos:id="$+id:scrollview_main"
     ohos:height="match_parent"
     ohos:width="match_parent"
-    ohos:focusable="focus_enable">
+    ohos:alignment="center"
+    ohos:orientation="vertical">
 
-    <DirectionalLayout
-        ohos:height="match_parent"
-        ohos:width="match_parent"
-        ohos:orientation="vertical">
+    <com.fprieto.wearable.menu.CircleMenu
+        ohos:id="$+id:circle_menu"
+        ohos:height="260vp"
+        ohos:width="260vp"
+        ohos:alignment="center"/>
 
-        <com.fprieto.wearable.menu.CircleMenu
-            ohos:id="$+id:circle_menu"
-            ohos:height="260vp"
-            ohos:width="260vp"
-            ohos:alignment="vertical_center"
-            ohos:layout_alignment="horizontal_center" />
-
-        <Image
-            ohos:id="$+id:button_health"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:layout_alignment="horizontal_center"
-            ohos:image_src="$media:health"
-            ohos:top_margin="16fp"/>
-
-        <Image
-            ohos:id="$+id:button_messaging"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:layout_alignment="horizontal_center"
-            ohos:image_src="$media:messaging"
-            ohos:top_margin="16fp"/>
-
-        <Image
-            ohos:id="$+id:button_audio"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:layout_alignment="horizontal_center"
-            ohos:image_src="audio"
-            ohos:top_margin="16fp"/>
-
-        <Image
-            ohos:id="$+id:button_record_audio"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:layout_alignment="horizontal_center"
-            ohos:image_src="audio"
-            ohos:visibility="hide"
-            ohos:text="Audio Recorder"
-            ohos:text_color="#FFFFFF"
-            ohos:top_margin="16fp"/>
-
-        <Image
-            ohos:id="$+id:button_play_audio"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:background_element="$graphic:button_background"
-            ohos:layout_alignment="horizontal_center"
-            ohos:padding="10fp"
-            ohos:visibility="hide"
-            ohos:text="Audio Player"
-            ohos:text_color="#FFFFFF"
-            ohos:top_margin="16fp"/>
-
-        <Image
-            ohos:id="$+id:button_play_remote_video"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:layout_alignment="horizontal_center"
-            ohos:image_src="$media:videoplayer"
-            ohos:top_margin="16fp"/>
-
-        <Button
-            ohos:id="$+id:button_location"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:background_element="$graphic:button_background"
-            ohos:bottom_margin="16fp"
-            ohos:layout_alignment="horizontal_center"
-            ohos:padding="10fp"
-            ohos:visibility="hide"
-            ohos:text="Get Location"
-            ohos:text_color="#FFFFFF"
-            ohos:top_margin="16fp"/>
-
-        <Image
-            ohos:id="$+id:button_joke"
-            ohos:height="match_content"
-            ohos:width="match_content"
-            ohos:bottom_margin="16fp"
-            ohos:image_src="$media:weather"
-            ohos:layout_alignment="horizontal_center"
-            ohos:top_margin="16fp"/>
-    </DirectionalLayout>
-</ScrollView>
+</DirectionalLayout>

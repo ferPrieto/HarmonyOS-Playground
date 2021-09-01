@@ -1,23 +1,27 @@
 apply plugin: 'com.huawei.ohos.hap'
+
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 ohos {
     signingConfigs {
         debug {
-            storeFile file('C:/Users/f00575167/keystore/DevEcoKeystore/DevEcoKeyStore.p12')
-            storePassword '000000198DD506FA156FDF892359AA454E202E81086F8ED67DEF1DC3EE54DC28640E07D15B7FC981DC'
-            keyAlias 'DevEcoKeyStore'
-            keyPassword '00000019B5D0796392D10005A9792551EE188535B0AA3835E54C4F5F7466207F77A2B29DFDD30C7EB1'
-            signAlg 'SHA256withECDSA'
-            profile file('D:/GalileoAppProvisionFileDebug.p7b')
-            certpath file('D:/FWearableCertificate.cer')
+            storeFile file(localProperties.getProperty("debugStoreFile"))
+            storePassword localProperties.getProperty("debugStorePassword")
+            keyAlias  localProperties.getProperty("debugKeyAlias")
+            keyPassword  localProperties.getProperty("debugKeyPassword")
+            signAlg localProperties.getProperty("debugSignAlg")
+            profile file(localProperties.getProperty("debugProfile"))
+            certpath file(localProperties.getProperty("debugCertPath"))
         }
         release {
-            storeFile file('C:/Users/f00575167/keystore/DevEcoKeystore/DevEcoKeyStore.p12')
-            storePassword '00000019FC00BB783E1935F706DD2A57FBD853AE0A77D5E2FD42F5E5217A5DF3C891B632AB50C49B43'
-            keyAlias 'DevEcoKeyStore'
-            keyPassword '000000198BBB8FEDF988B3C86A03AF5F58A63D35960F811D10CE735575007A608DE1DBA843D6B22BEF'
-            signAlg 'SHA256withECDSA'
-            profile file('D:/GalileoAppProvisionFileDebug.p7b')
-            certpath file('D:/FWearableCertificate.cer')
+            storeFile file(localProperties.getProperty("releaseStoreFile"))
+            storePassword localProperties.getProperty("releaseStorePassword")
+            keyAlias  localProperties.getProperty("releaseKeyAlias")
+            keyPassword  localProperties.getProperty("releaseKeyPassword")
+            signAlg localProperties.getProperty("releaseSignAlg")
+            profile file(localProperties.getProperty("releaseProfile"))
+            certpath file(localProperties.getProperty("releaseCertPath"))
         }
     }
     compileSdkVersion 5

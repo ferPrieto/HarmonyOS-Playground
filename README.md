@@ -39,14 +39,24 @@ It's necessary to add the specific values for the next entries in the `local.pro
 
 ## Demo
 
-<table><tr>
-<td><img src="art/phone-health.gif"  title="Phone Health" border=2></td>
-<td><img src="art/watch-health.gif"  title="Watch Health" border=2></td>
+<table>Health with Ping(to wake up the watch app)<tr>
+<td><img src="art/phone-health.gif" width=320 title="Phone Health" border=2></td>
+<td><img src="art/watch-health.gif" width=320 title="Watch Health" border=2></td>
 </tr></table> 
 
-<table><tr>
+<table>Messaging: photo sending (from phone to watch) and text message (from watch to phone)<tr>
 <td><img src="art/phone-messaging.gif" width=320 title="Phone Messaging" border=2></td>
 <td><img src="art/watch-messaging.gif" width=320 title="Watch Messaging" border=2></td>
+</tr></table> 
+
+<table>Video Player: video control from the watch<tr>
+<td><img src="art/phone-videoplayer.gif" width=320 title="Phone VideoPlayer" border=2></td>
+<td><img src="art/watch-videoplayer.gif" width=320 title="Watch VideoPlayer" border=2></td>
+</tr></table> 
+
+
+<table>Audio: record, play radio stations, local files and recorded files<tr>
+<td><p align="center"><img src="art/watch-audio.gif" width=320 title="Watch Audio" border=2> </p></td>
 </tr></table> 
 
 ## Pending Features

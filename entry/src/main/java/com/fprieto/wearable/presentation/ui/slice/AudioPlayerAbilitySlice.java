@@ -4,7 +4,6 @@ import com.fprieto.wearable.ResourceTable;
 import com.fprieto.wearable.util.LogUtils;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
-import ohos.agp.components.Button;
 import ohos.agp.components.DirectionalLayout;
 import ohos.agp.components.Image;
 import ohos.agp.components.Text;
@@ -58,15 +57,10 @@ public class AudioPlayerAbilitySlice extends AbilitySlice {
         public void onMediaTimeIncontinuity(Player.MediaTimeInfo mediaTimeInfo) { }
     };
 
-    private Button buttonPlayLocalFile;
-    private Button buttonPlayRadioStation;
-    private Button buttonPlayLastRecording;
     private Image buttonPlay;
     private Image buttonVolumeUp;
     private Image buttonVolumeDown;
     private Text filePlayingName;
-    private DirectionalLayout controllerWrapper;
-    private DirectionalLayout optionsWrapper;
     private boolean isPlaying = false;
     private Player player;
     private AudioManager audioManager;
@@ -85,54 +79,60 @@ public class AudioPlayerAbilitySlice extends AbilitySlice {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_audioplayer);
 
-      //  this.optionsWrapper.setSwipeToDismiss(true);
+        initAudioComponents();
+        initViews();
+        setIntentParams(intent);
+    }
 
+    private void setIntentParams(Intent intent) {
+        String playingTypeParam = intent.getStringParam("PLAYING_TYPE");
+        if(playingTypeParam.equals("local")){
+            playingType = PlayingType.LOCAL;
+            filePlayingName.setText("Playing: sample-music.mp3");
+            getFileDescriptorFromLocalFile();
+        }else if(playingTypeParam.equals("radio")){
+            playingType = PlayingType.RADIO;
+            filePlayingName.setText("Playing: kqedradio");
+            getFileDescriptorFromRadio();
+        }else if(playingTypeParam.equals("recording")){
+            playingType = PlayingType.RECORDING;
+            filePlayingName.setText("Last recording");
+            getFileDescriptorFromLastRecording();
+        }
+    }
+
+    private void initAudioComponents(){
         EventRunner runner = EventRunner.create(true);
         recorderHandler = new RecorderEventHandler(runner);
         audioManager = new AudioManager(this);
+    }
+
+    private void initViews() {
         filePlayingName = (Text) findComponentById(ResourceTable.Id_file_name);
-        initWrappers();
-        initOptionsButtons();
-        initControllerButtons();
-        setOptionsButtonsClickListeners();
-        setControllerButtonsClickListeners();
-    }
-
-    private void initWrappers() {
-        controllerWrapper = (DirectionalLayout) findComponentById(ResourceTable.Id_controller_wrapper);
-        optionsWrapper = (DirectionalLayout) findComponentById(ResourceTable.Id_options_wrapper);
-    }
-
-    private void initOptionsButtons() {
-        buttonPlayLocalFile = (Button) findComponentById(ResourceTable.Id_button_local_file);
-        buttonPlayRadioStation = (Button) findComponentById(ResourceTable.Id_button_radio);
-        buttonPlayLastRecording = (Button) findComponentById(ResourceTable.Id_button_last_recording);
-    }
-
-    private void initControllerButtons() {
         buttonPlay = (Image) findComponentById(ResourceTable.Id_imgPlayer);
         buttonVolumeUp = (Image) findComponentById(ResourceTable.Id_imgVolumeLoud);
         buttonVolumeDown = (Image) findComponentById(ResourceTable.Id_imgVolumeQuiet);
-    }
 
-    private void setOptionsButtonsClickListeners() {
-        buttonPlayLocalFile.setClickedListener(listener -> {
-            setControllerWrapperVisibility(true);
-            filePlayingName.setVisibility(DirectionalLayout.VISIBLE);
-            getFileDescriptorFromLocalFile();
-            playingType = PlayingType.LOCAL;
+        buttonPlay.setClickedListener(listener -> {
+            isPlaying = !isPlaying;
+            if (!isPlaying) {
+                buttonPlay.setPixelMap(ResourceTable.Media_play_arrow);
+                Runnable runnable = () -> pauseMusic();
+                recorderHandler.postTask(runnable, 0, EventHandler.Priority.IMMEDIATE);
+
+            } else {
+                buttonPlay.setPixelMap(ResourceTable.Media_icon_pause);
+                Runnable runnable = () -> playMusic();
+                recorderHandler.postTask(runnable, 0, EventHandler.Priority.IMMEDIATE);
+            }
         });
-        buttonPlayRadioStation.setClickedListener(listener -> {
-            setControllerWrapperVisibility(true);
-            filePlayingName.setVisibility(DirectionalLayout.VISIBLE);
-            getFileDescriptorFromRadio();
-            playingType = PlayingType.RADIO;
+
+        buttonVolumeUp.setClickedListener(listener -> {
+            audioManager.changeVolumeBy(AudioManager.AudioVolumeType.STREAM_MUSIC, 1);
         });
-        buttonPlayLastRecording.setClickedListener(listener -> {
-            setControllerWrapperVisibility(true);
-            filePlayingName.setVisibility(DirectionalLayout.VISIBLE);
-            getFileDescriptorFromLastRecording();
-            playingType = PlayingType.RECORDING;
+
+        buttonVolumeDown.setClickedListener(listener -> {
+            audioManager.changeVolumeBy(AudioManager.AudioVolumeType.STREAM_MUSIC, -1);
         });
     }
 
@@ -161,45 +161,6 @@ public class AudioPlayerAbilitySlice extends AbilitySlice {
             LogUtils.e(TAG, "Audio resource is unavailable: " + e.toString());
             return;
         }
-    }
-
-    private void setControllerButtonsClickListeners() {
-        buttonPlay.setClickedListener(listener -> {
-            isPlaying = !isPlaying;
-            if (!isPlaying) {
-                buttonPlay.setPixelMap(ResourceTable.Media_play_arrow);
-                Runnable runnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        pauseMusic();
-                    }
-                };
-                recorderHandler.postTask(runnable, 0, EventHandler.Priority.IMMEDIATE);
-
-            } else {
-                buttonPlay.setPixelMap(ResourceTable.Media_icon_pause);
-                Runnable runnable = new Runnable() {
-                    @Override
-                    public void run() {
-                        playMusic();
-                    }
-                };
-                recorderHandler.postTask(runnable, 0, EventHandler.Priority.IMMEDIATE);
-            }
-        });
-
-        buttonVolumeUp.setClickedListener(listener -> {
-            audioManager.changeVolumeBy(AudioManager.AudioVolumeType.STREAM_MUSIC, 1);
-        });
-
-        buttonVolumeDown.setClickedListener(listener -> {
-            audioManager.changeVolumeBy(AudioManager.AudioVolumeType.STREAM_MUSIC, -1);
-        });
-    }
-
-    private void setControllerWrapperVisibility(boolean visible) {
-        controllerWrapper.setVisibility(visible ? DirectionalLayout.VISIBLE : DirectionalLayout.HIDE);
-        optionsWrapper.setVisibility(visible ? DirectionalLayout.HIDE : DirectionalLayout.VISIBLE);
     }
 
     private void playMusic() {
@@ -273,6 +234,5 @@ public class AudioPlayerAbilitySlice extends AbilitySlice {
             super(runner);
         }
     }
-
 }
 

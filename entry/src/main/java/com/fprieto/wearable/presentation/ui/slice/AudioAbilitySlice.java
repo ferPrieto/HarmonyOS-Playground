@@ -14,8 +14,6 @@ import ohos.app.dispatcher.TaskDispatcher;
 import ohos.media.image.ImageSource;
 import ohos.media.image.PixelMap;
 
-import java.nio.charset.StandardCharsets;
-
 public class AudioAbilitySlice extends AbilitySlice {
 
     private final static String TAG = "AudioAbilitySlice";
@@ -87,7 +85,7 @@ public class AudioAbilitySlice extends AbilitySlice {
         lastReceivedImageTitle = (Text) findComponentById(ResourceTable.Id_image_received_title);
 
         final Button playAudioButton = (Button) findComponentById(ResourceTable.Id_button_play_audio);
-        playAudioButton.setClickedListener(component -> present(new AudioPlayerAbilitySlice(), new Intent()));
+        playAudioButton.setClickedListener(component -> present(new AudioPlayerDashboardAbilitySlice(), new Intent()));
 
         final Button recordButton = (Button) findComponentById(ResourceTable.Id_button_record_audio);
         recordButton.setClickedListener(component -> present(new RecordAudioAbilitySlice(), new Intent()));

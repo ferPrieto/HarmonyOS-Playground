@@ -1,4 +1,4 @@
-# HarmonyOS-Wearable-Kata :iphone: :hearts: :watch:
+# HarmonyOS-Wearable-Kata :watch: :hearts: :iphone:
 
 A `Companion & Standalone` HarmonyOS app that interacts with an Android device (GMS & HMS).
 
@@ -25,6 +25,18 @@ The ones I've been authorised for are just for testing purpose:
   <img src="art/HealthKit-Application.png">
 </p>
 
+3. Debug & Release Signing Config (mandatory for companion apps)
+
+It's necessary to add the specific values for the next entries in the `local.properties`:
+* **debugStoreFile**
+* **debugStorePassword**
+* **debugKeyAlias**
+* **debugKeyPassword**
+* **debugSignAlg**
+* **debugProfile** 
+* **debugCertPath**  
+(likewise for the release)
+
 ## Demo
 
 <p align="center">
@@ -39,7 +51,7 @@ The ones I've been authorised for are just for testing purpose:
 - Verify Sensors data (Real Time Data)
 - Add Weather API and remove Jokes API
 - Add Unit tests for the data layer at least
-- ~~Add Readme~~ 
+- ~~Update Readme~~ 
 
 ## Libraries Used
 

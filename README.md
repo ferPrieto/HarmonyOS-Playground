@@ -40,13 +40,13 @@ It's necessary to add the specific values for the next entries in the `local.pro
 ## Demo
 
 <table><tr>
-<td><img src="art/phone-health"  title="Phone Health" border=2></td>
-<td><img src="art/watch-health"  title="Watch Health" border=2></td>
+<td><img src="art/phone-health.gif"  title="Phone Health" border=2></td>
+<td><img src="art/watch-health.gif"  title="Watch Health" border=2></td>
 </tr></table> 
 
 <table><tr>
-<td><img src="art/phone-messaging" width=320 title="Phone Messaging" border=2></td>
-<td><img src="art/watch-messaging" width=320 title="Watch Messaging" border=2></td>
+<td><img src="art/phone-messaging.gif" width=320 title="Phone Messaging" border=2></td>
+<td><img src="art/watch-messaging.gif" width=320 title="Watch Messaging" border=2></td>
 </tr></table> 
 
 ## Pending Features

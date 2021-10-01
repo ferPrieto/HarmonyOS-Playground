@@ -7,7 +7,7 @@
     ohos:background_element="$graphic:ability_background"
     ohos:orientation="vertical">
 
-    <com.fprieto.wearable.menu.CircleMenu
+    <com.fprieto.circlemenu.CircleMenu
         ohos:id="$+id:circle_menu"
         ohos:height="260vp"
         ohos:width="260vp"

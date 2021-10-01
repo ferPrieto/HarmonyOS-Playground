@@ -3,7 +3,7 @@
     "bundleName": "com.fprieto.wearable",
     "vendor": "SmartWatchExample",
     "version": {
-      "code": 1,
+      "code": 1000000,
       "name": "1.0"
     },
     "apiVersion": {
@@ -36,7 +36,8 @@
     "distro": {
       "deliveryWithInstall": true,
       "moduleName": "entry",
-      "moduleType": "entry"
+      "moduleType": "entry",
+      "installationFree":false
     },
     "abilities": [
       {
@@ -125,9 +126,6 @@
       },
       {
         "name": "ohos.permission.RECORD_AUDIO"
-      },
-      {
-        "name": "ohos.permission.MICROPHONE"
       },
       {
         "name": "harmonyos.permission.READ_EXTERNAL_STORAGE"

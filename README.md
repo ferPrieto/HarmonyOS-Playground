@@ -1,4 +1,4 @@
-# HarmonyOS-Wearable-Kata :watch: :hearts: :iphone:
+# HarmonyOS-Playground :watch: :hearts: :iphone:
 
 A `Companion & Standalone` HarmonyOS app that interacts with an Android device (GMS & HMS).
 
@@ -21,11 +21,6 @@ In order to be able to communicate with an Android device which integrates the W
 
 In order to be able to communicate with Huawei Health and get any available tracked data, it's necessary to apply from the Huawei Developer console, more info here: [healthkit-application]
 Likewise if the feature involves watch sensors connection and retrieve `Real Time Data`, then Health Kit online application is required.
-
-The ones I've been authorised for are just for testing purpose:
-<p align="center">
-  <img src="art/HealthKit-Application.png">
-</p>
 
 3. Debug & Release Signing Config (mandatory for companion apps)
 

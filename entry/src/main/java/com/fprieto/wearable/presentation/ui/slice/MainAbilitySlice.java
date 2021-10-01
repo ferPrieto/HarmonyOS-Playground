@@ -1,8 +1,8 @@
 package com.fprieto.wearable.presentation.ui.slice;
 
+import com.fprieto.circlemenu.CircleMenu;
+import com.fprieto.circlemenu.OnMenuStatusChangeListener;
 import com.fprieto.wearable.ResourceTable;
-import com.fprieto.wearable.menu.CircleMenu;
-import com.fprieto.wearable.menu.OnMenuStatusChangeListener;
 import com.fprieto.wearable.presentation.ui.slice.joke.JokeAbilitySlice;
 import com.fprieto.wearable.util.LogUtils;
 import com.huawei.watch.kit.hiwear.HiWear;

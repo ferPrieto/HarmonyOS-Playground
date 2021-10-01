@@ -1,4 +1,4 @@
-package com.fprieto.wearable.menu;
+package com.fprieto.circlemenu;
 
 import ohos.agp.animation.Animator;
 import ohos.agp.animation.AnimatorValue;

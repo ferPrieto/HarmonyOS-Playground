@@ -2,15 +2,15 @@
   "string": [
     {
       "name": "app_name",
-      "value": "SmartWatchExampleNewIDE"
+      "value": "HarmonyOS-Playground"
     },
     {
       "name": "mainability_description",
-      "value": "Java_Wearable_Empty Feature Ability"
+      "value": "Main Ability"
     },
     {
       "name": "mainability",
-      "value": "SmartWatchExample"
+      "value": "HarmonyOS-Playground"
     }
   ]
 }

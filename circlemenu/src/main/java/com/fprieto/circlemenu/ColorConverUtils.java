@@ -1,4 +1,4 @@
-package com.fprieto.wearable.menu;
+package com.fprieto.circlemenu;
 
 import ohos.app.Context;
 import ohos.global.resource.NotExistException;

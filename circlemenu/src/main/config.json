@@ -1,0 +1,25 @@
+{
+  "app": {
+    "bundleName": "com.fprieto.wearable",
+    "vendor": "fprieto",
+    "version": {
+      "code": 1000000,
+      "name": "1.0.0"
+    }
+  },
+  "deviceConfig": {
+  },
+  "module": {
+    "package": "com.fprieto.circlemenu",
+    "deviceType": [
+      "phone",
+      "tablet",
+      "wearable"
+    ],
+    "distro": {
+      "deliveryWithInstall": true,
+      "moduleName": "circlemenu",
+      "moduleType": "har"
+    }
+  }
+}

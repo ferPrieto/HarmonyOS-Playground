@@ -1,4 +1,4 @@
-package com.fprieto.wearable.menu;
+package com.fprieto.circlemenu;
 
 public final class ColorConstants {
 

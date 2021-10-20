@@ -1,15 +1,15 @@
 package com.fprieto.wearable.data;
 
-import com.fprieto.wearable.model.Joke;
+import com.fprieto.wearable.model.WeatherResponse;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
-
-import java.util.List;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface ApiService {
 
-    @GET("jokes/programming/random")
-    @Headers("Content-Type: application/json;charset=UTF-8")
-    Observable<List<Joke>> fetchJokes();
+    @GET("weather/")
+    Observable<WeatherResponse> getWeather(@Query("lat") double latitude, @Query("lon") double longitude,
+                                           @Query("appid") String apiKey);
 }

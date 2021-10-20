@@ -5,25 +5,16 @@
     ohos:width="match_parent"
     ohos:background_element="$graphic:ability_background"
     ohos:orientation="vertical">
-    <Button
-        ohos:id="$+id:button_get_joke"
-        ohos:height="match_content"
-        ohos:width="match_content"
-        ohos:layout_alignment="horizontal_center"
-        ohos:padding="8fp"
-        ohos:text="Get me a random joke!"
-        ohos:bottom_margin="16fp"
-        ohos:top_margin="32fp"/>
 
     <Text
         ohos:top_margin="8fp"
         ohos:text_alignment="center"
         ohos:layout_alignment="horizontal_center"
-        ohos:hint="Joke comes here!"
+        ohos:hint="Weather status XX"
         ohos:text_size="18fp"
         ohos:auto_scrolling_count="unlimited"
         ohos:truncation_mode="auto_scrolling"
-        ohos:id="$+id:text_joke"
+        ohos:id="$+id:weather_status_text"
         ohos:text_color="#C1C1C1"
         ohos:height="match_content"
         ohos:width="200fp"/>

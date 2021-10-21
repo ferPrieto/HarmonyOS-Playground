@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+    ohos:background_element="$graphic:ability_background"
+    ohos:orientation="vertical">
+
+    <Text
+        ohos:id="$+id:weather_city_text"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:auto_scrolling_count="unlimited"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text_alignment="center"
+        ohos:text_color="#C1C1C1"
+        ohos:text_size="15fp"
+        ohos:top_margin="8fp"
+        ohos:visibility="hide"
+        ohos:truncation_mode="auto_scrolling"/>
+
+    <Text
+        ohos:id="$+id:weather_status_text"
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:auto_scrolling_count="unlimited"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text_alignment="center"
+        ohos:text_color="#C1C1C1"
+        ohos:text_size="20fp"
+        ohos:top_margin="8fp"
+        ohos:visibility="hide"
+        ohos:truncation_mode="auto_scrolling"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        ohos:id="$+id:animationView"
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:top_margin="8fp"
+        ohos:visibility="hide"/>
+
+    <RoundProgressBar
+        ohos:id="$+id:round_progress_bar"
+        ohos:height="48fp"
+        ohos:width="48fp"
+        ohos:layout_alignment="horizontal_center"
+        ohos:progress="0"
+        ohos:progress_width="10vp"
+        ohos:top_margin="8fp"
+        ohos:visibility="hide"/>
+
+</DirectionalLayout>

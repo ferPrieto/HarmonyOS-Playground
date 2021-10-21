@@ -1,10 +1,8 @@
 package com.fprieto.wearable.data;
 
-import com.fprieto.wearable.model.WeatherResponse;
+import com.fprieto.wearable.data.model.WeatherResponse;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {

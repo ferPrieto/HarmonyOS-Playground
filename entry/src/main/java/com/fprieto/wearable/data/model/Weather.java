@@ -1,10 +1,10 @@
-package com.fprieto.wearable.model;
+package com.fprieto.wearable.data.model;
 
 public class Weather {
 
     private int id;
-    private String main;
     private String description;
+    private String icon;
 
     public int getId() {
         return id;
@@ -14,12 +14,12 @@ public class Weather {
         this.id = id;
     }
 
-    public String getMain() {
-        return main;
+    public String getIcon() {
+        return icon;
     }
 
-    public void setMain(String main) {
-        this.main = main;
+    public void setIcon(String icon) {
+        this.icon = icon;
     }
 
     public String getDescription() {

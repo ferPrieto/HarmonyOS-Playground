@@ -1,9 +1,12 @@
 package com.fprieto.wearable.presentation.ui.slice.weather;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.value.LottieAnimationViewData;
 import com.fprieto.wearable.P2PAbilitySlice;
 import com.fprieto.wearable.ResourceTable;
-import com.fprieto.wearable.model.WeatherResponse;
 import com.fprieto.wearable.presentation.ui.UiObserver;
+import com.fprieto.wearable.presentation.ui.model.WeatherType;
+import com.fprieto.wearable.presentation.ui.model.WeatherUiModel;
 import com.fprieto.wearable.presentation.vm.WeatherViewModel;
 import com.fprieto.wearable.util.LogUtils;
 import ohos.aafwk.content.Intent;
@@ -19,31 +22,41 @@ public class WeatherAbilitySlice extends P2PAbilitySlice {
 
     private static final String TAG = "WeatherAbilitySlice";
 
+    private Text cityTextView;
     private Text weatherStatusTextView;
-    private WeatherViewModel weatherViewModel;
+    private LottieAnimationView animationView;
     private RoundProgressBar progressBar;
 
-    private String logger = "Logs \n";
+    private WeatherViewModel weatherViewModel;
+
     private Locator locator;
     private MyLocatorCallback locatorCallback;
+
+    private String logger = "Logs \n";
+    private int previousLocation[] = null;
 
     @Override
     protected void onStart(Intent intent) {
         super.onStart(intent);
-        setUIContent(ResourceTable.Layout_ability_joke);
+        setUIContent(ResourceTable.Layout_ability_weather);
 
-        weatherViewModel = new WeatherViewModel();
+        initLocator();
+        initViewModel();
+        initViews();
+    }
+
+    private void initLocator() {
         locator = new Locator(this);
         locatorCallback = new MyLocatorCallback();
+    }
 
-        progressBar = (RoundProgressBar) findComponentById(ResourceTable.Id_round_progress_bar);
-        weatherStatusTextView = (Text) findComponentById(ResourceTable.Id_weather_status_text);
-
+    private void initViewModel() {
+        weatherViewModel = new WeatherViewModel();
         weatherViewModel.getStates().addObserver(new UiObserver<WeatherViewState>(this) {
             @Override
             public void onValueChanged(WeatherViewState weatherViewState) {
                 if (weatherViewState instanceof WeatherViewState.Loading) {
-                    onLoading((WeatherViewState.Loading) weatherViewState);
+                    onLoading();
                 } else if (weatherViewState instanceof WeatherViewState.ErrorState) {
                     onError((WeatherViewState.ErrorState) weatherViewState);
                 } else if (weatherViewState instanceof WeatherViewState.Loaded) {
@@ -53,25 +66,80 @@ public class WeatherAbilitySlice extends P2PAbilitySlice {
         }, false);
     }
 
-    private void onLoading(final WeatherViewState.Loading loadingState) {
+    private void initViews() {
+        progressBar = (RoundProgressBar) findComponentById(ResourceTable.Id_round_progress_bar);
+        cityTextView = (Text) findComponentById(ResourceTable.Id_weather_city_text);
+        weatherStatusTextView = (Text) findComponentById(ResourceTable.Id_weather_status_text);
+        animationView = (LottieAnimationView) findComponentById(ResourceTable.Id_animationView);
+    }
+
+    private void onLoading() {
         progressBar.setVisibility(Component.VISIBLE);
+        cityTextView.setVisibility(Component.HIDE);
         weatherStatusTextView.setVisibility(Component.HIDE);
+        animationView.setVisibility(Component.HIDE);
     }
 
     private void onLoaded(final WeatherViewState.Loaded loadedState) {
         progressBar.setVisibility(Component.HIDE);
+        cityTextView.setVisibility(Component.VISIBLE);
         weatherStatusTextView.setVisibility(Component.VISIBLE);
+        animationView.setVisibility(Component.VISIBLE);
+        bindUiValues(loadedState.getWeatherUiModel());
+    }
 
-        final WeatherResponse weatherResponse = loadedState.getWeatherResponse();
-        if (weatherResponse != null) {
-            weatherStatusTextView.setText(weatherResponse.getWeather()[0].getDescription());
+    private void bindUiValues(WeatherUiModel weatherUiModel) {
+        if (weatherUiModel != null) {
+            cityTextView.setText(weatherUiModel.getCity()+new String(Character.toChars(0x1F4CD)));
+            weatherStatusTextView.setText(weatherUiModel.getStatus());
+            setUpAnimation(weatherUiModel.getWeatherType());
         } else {
             weatherStatusTextView.setText("Weather info unavailable...");
         }
     }
 
+    private void setUpAnimation(WeatherType weatherType) {
+        LottieAnimationViewData data = new LottieAnimationViewData();
+        data.setFilename(getLottieFile(weatherType));
+        data.autoPlay = true;
+        animationView.setAnimationData(data);
+    }
+
+    private String getLottieFile(WeatherType weatherType) {
+        String lottieFile = "sunny.json";
+        switch (weatherType) {
+            case RAINY:
+                lottieFile = "rainy.json";
+                break;
+            case SNOWY:
+                lottieFile = "snowy.json";
+                break;
+            case STORMY:
+                lottieFile = "stormy.json";
+                break;
+            case PARTIALLY_SUNNY:
+                lottieFile = "partially_sunny.json";
+                break;
+            case SUNNY:
+                lottieFile = "sunny.json";
+                break;
+            case RAIN_WITH_SUN:
+                lottieFile = "rain_with_sun.json";
+                break;
+            case CLOUDY_LIGHT:
+                lottieFile = "cloudy_light.json";
+                break;
+            case CLOUDY_DARK:
+                lottieFile = "cloudy_dark.json";
+                break;
+        }
+        return lottieFile;
+    }
+
     private void onError(final WeatherViewState.ErrorState errorState) {
         progressBar.setVisibility(Component.HIDE);
+        animationView.setVisibility(Component.HIDE);
+        cityTextView.setVisibility(Component.HIDE);
         weatherStatusTextView.setVisibility(Component.VISIBLE);
 
         final Throwable throwable = errorState.getThrowable();
@@ -109,9 +177,12 @@ public class WeatherAbilitySlice extends P2PAbilitySlice {
         public void onLocationReport(Location location) {
             logger += "Lat: " + location.getLatitude() + ", Long: " + location.getLongitude() + "\n";
             LogUtils.i(TAG, "Lat: " + location.getLatitude() + ", Long: " + location.getLongitude());
-            getUITaskDispatcher().syncDispatch(() -> {
-                weatherViewModel.getWeatherByLocation((int)location.getLatitude(), (int)location.getLongitude());
-            });
+            if (previousLocation == null || previousLocation[0] != (int)location.getLatitude() || previousLocation[1] != (int)location.getLongitude()) {
+                previousLocation = new int[]{(int)location.getLatitude(), (int)location.getLongitude()};
+                getUITaskDispatcher().syncDispatch(() -> {
+                    weatherViewModel.getWeatherByLocation((int) location.getLatitude(), (int) location.getLongitude());
+                });
+            }
         }
 
         @Override

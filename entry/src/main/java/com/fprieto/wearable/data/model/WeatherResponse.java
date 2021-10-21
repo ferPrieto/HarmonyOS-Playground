@@ -1,4 +1,4 @@
-package com.fprieto.wearable.model;
+package com.fprieto.wearable.data.model;
 
 /**
  * [{"id":56,"type":"programming","setup":"How do you check if a webpage is HTML5?","punchline":"Try it out on Internet Explorer"}]

@@ -1,13 +1,11 @@
 package com.fprieto.wearable.presentation.ui.slice.weather;
 
-import com.fprieto.wearable.model.WeatherResponse;
+import com.fprieto.wearable.data.model.WeatherResponse;
 import com.fprieto.wearable.presentation.ui.base.BaseViewState;
-
-import java.util.List;
+import com.fprieto.wearable.presentation.ui.model.WeatherUiModel;
 
 public abstract class WeatherViewState extends BaseViewState {
     public static class Loading extends WeatherViewState {
-
     }
 
     public static class ErrorState extends WeatherViewState {
@@ -24,13 +22,13 @@ public abstract class WeatherViewState extends BaseViewState {
 
     public static class Loaded extends WeatherViewState {
         private final WeatherResponse weatherResponse;
+        private WeatherMapperImpl mapper = new WeatherMapperImpl();
 
         public Loaded(WeatherResponse weatherResponse) {
             this.weatherResponse = weatherResponse;
         }
-
-        public WeatherResponse getWeatherResponse() {
-            return weatherResponse;
+        public WeatherUiModel getWeatherUiModel() {
+            return mapper.toWeatherUi(weatherResponse);
         }
     }
 }

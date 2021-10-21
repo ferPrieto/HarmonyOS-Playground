@@ -1,4 +1,4 @@
-package com.fprieto.wearable.model;
+package com.fprieto.wearable.data.model;
 
 public class PlayerCommand {
     private String command;

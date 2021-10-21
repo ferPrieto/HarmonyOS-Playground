@@ -1,8 +1,8 @@
 package com.fprieto.wearable.presentation.ui.slice;
 
 import com.fprieto.wearable.ResourceTable;
-import com.fprieto.wearable.model.DataMessage;
-import com.fprieto.wearable.model.PlayerCommand;
+import com.fprieto.wearable.data.model.DataMessage;
+import com.fprieto.wearable.data.model.PlayerCommand;
 import com.fprieto.wearable.util.LogUtils;
 import com.google.gson.Gson;
 import com.huawei.watch.kit.hiwear.HiWear;

@@ -3,7 +3,7 @@ package com.fprieto.wearable.presentation.ui.slice;
 import com.fprieto.circlemenu.CircleMenu;
 import com.fprieto.circlemenu.OnMenuStatusChangeListener;
 import com.fprieto.wearable.ResourceTable;
-import com.fprieto.wearable.presentation.ui.slice.joke.JokeAbilitySlice;
+import com.fprieto.wearable.presentation.ui.slice.weather.WeatherAbilitySlice;
 import com.fprieto.wearable.util.LogUtils;
 import com.huawei.watch.kit.hiwear.HiWear;
 import com.huawei.watch.kit.hiwear.p2p.HiWearMessage;
@@ -80,7 +80,7 @@ public class MainAbilitySlice extends AbilitySlice {
                             break;
                         }
                         case 1: {
-                            present(new JokeAbilitySlice(), new Intent());
+                            present(new WeatherAbilitySlice(), new Intent());
                             break;
                         }
                         case 2: {

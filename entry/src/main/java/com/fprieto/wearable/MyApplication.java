@@ -23,7 +23,7 @@ public class MyApplication extends AbilityPackage {
                     .connectTimeout(60L, TimeUnit.SECONDS)
                     .build();
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl("https://official-joke-api.appspot.com/")
+                    .baseUrl("https://api.openweathermap.org/data/2.5/")
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .addConverterFactory(MoshiConverterFactory.create()).client(client)
                     .build();

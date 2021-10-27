@@ -4,6 +4,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.value.LottieAnimationViewData;
 import com.fprieto.wearable.P2PAbilitySlice;
 import com.fprieto.wearable.ResourceTable;
+import com.fprieto.wearable.presentation.di.Injection;
 import com.fprieto.wearable.presentation.ui.UiObserver;
 import com.fprieto.wearable.presentation.ui.model.WeatherType;
 import com.fprieto.wearable.presentation.ui.model.WeatherUiModel;
@@ -51,7 +52,7 @@ public class WeatherAbilitySlice extends P2PAbilitySlice {
     }
 
     private void initViewModel() {
-        weatherViewModel = new WeatherViewModel();
+        weatherViewModel = new WeatherViewModel(Injection.getInstance().provideWeatherRepository());
         weatherViewModel.getStates().addObserver(new UiObserver<WeatherViewState>(this) {
             @Override
             public void onValueChanged(WeatherViewState weatherViewState) {
